@@ -40,3 +40,4 @@ let router = {
     '/adminHome': generalPageController.getAdminHomePage,
 }
 
+
