@@ -25,11 +25,9 @@ class GeneralPageController {
             res.end();
         } else {
             let data = '';
-
             req.on('data', chunk => {
                 data += chunk;
             });
-
             req.on('end', async () => {
                 let userLoginInfo = qs.parse(data);
                 let {email, password} = userLoginInfo;
@@ -38,14 +36,13 @@ class GeneralPageController {
                 if (user.length > 0) {
                     if (user[0].role === 'customer') {
                         await BaseFunctionController.writeFileData('./session/user', JSON.stringify(userLoginInfo));
-                        res.writeHead(301,{"location": "/customerHome"});
+                        res.writeHead(301, {"location": "/customerHome"});
                         res.end();
                     } else {
-                        res.writeHead(301,{"location": "/adminHome"});
+                        res.writeHead(301, {"location": "/adminHome"});
                         res.end();
                     }
-                }
-                else {
+                } else {
                     res.writeHead(301, {location: '/login'});
                     res.end();
                 }
