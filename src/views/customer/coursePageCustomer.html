@@ -9,20 +9,20 @@
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="/public/img/favicon.ico" rel="icon">
+    <link href="../../../public../../../public/img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="/public/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../../../public/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="/public/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../public/css/style.css">
 </head>
 
 <body>
@@ -78,7 +78,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Function</a>
                         <div class="dropdown-menu m-0">
                             <a href="/add" class="dropdown-item">Add</a>
-                            <a href="/edit" class="dropdown-item">edit</a>
+                            <a href="/edit" class="dropdown-item">BUY</a>
                             <a href="/delete" class="dropdown-item">delete</a>
                         </div>
                     </div>
@@ -103,67 +103,18 @@
         </div>
     </div>
     <!-- Header End -->
+    <!-- Khoá học -->
     <div class="card-columns">
-        <div class="card text-center">
-            <img class="card-img-top" src="/public/img/courses-1.jpg" height="284px" width="160px" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Khoá học tiếng anh Trung học cơ sở</h5>
-                <p class="card-text">Miêu tả khoá học 1</p>
-            </div>
-            <button type="button" class="btn btn-primary">Edit</button>
-            <button type="button" class="btn btn-danger">Delete</button>
-        </div>
-
-        <div class="card text-center">
-            <img class="card-img-top" src="/public/img/courses-2.jpg" height="284px" width="160px" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Khoá học nâng cấp 1</h5>
-                <p class="card-text">Miêu tả khoá học 2</p>
-            </div>
-            <button type="button" class="btn btn-primary">Edit</button>
-            <button type="button" class="btn btn-danger">Delete</button>
-        </div>
-        <div class="card text-center">
-            <img class="card-img" src="/public/img/courses-3.jpg"height="284px" width="160px"alt="Card image">
-            <div class="card-body">
-                <h5 class="card-title">Khoá học nâng cấp 2</h5>
-                <p class="card-text">Miêu tả khoá học 3</p>
-            </div>
-            <button type="button" class="btn btn-primary">Edit</button>
-            <button type="button" class="btn btn-danger">Delete</button>
-        </div>
-    </div>
-    <div class="card-columns">
-        <div class="card text-center">
-            <img class="card-img-top" src="/public/img/courses-1.jpg" height="284px" width="160px" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Khóa học Pre-IELTS</h5>
-                <p class="card-text">Miêu tả khoá học 4</p>
-            </div>
-            <button type="button" class="btn btn-primary">Edit</button>
-            <button type="button" class="btn btn-danger">Delete</button>
-        </div>
-        <a href="/add"><button type="button" class="btn btn-outline-info">+</button></a>
-
-        <div class="card text-center">
-            <img class="card-img-top" src="/public/img/courses-2.jpg" height="284px" width="160px" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Khóa học IELTS INTERMEDIATE</h5>
-                <p class="card-text">Miêu tả khoá học 5</p>
-            </div>
-            <button type="button" class="btn btn-primary">Edit</button>
-            <button type="button" class="btn btn-danger">Delete</button>
-        </div>
-        <div class="card text-center">
-            <img class="card-img" src="/public/img/courses-3.jpg"height="284px" width="160px"alt="Card image">
-            <div class="card-body">
-                <h5 class="card-title">Khóa học IELTS ADVANCED</h5>
-                <p class="card-text">Miêu tả khoá học 6</p>
-            </div>
-            <button type="button" class="btn btn-primary">Edit</button>
-            <button type="button" class="btn btn-danger">Delete</button>
-        </div>
-
+<!--        <div class="card text-center">-->
+<!--            <img class="card-img-top" src="{imageCourseLink}" height="284px" width="160px" alt="Card image cap">-->
+<!--            <div class="card-body">-->
+<!--                <h5 class="card-title"><a href="/Khoahoc1">{titleCourse}</a></h5>-->
+<!--                <p class="card-text">{contentCourse}</p>-->
+<!--                <p class="card-text">{priceCourse}</p>-->
+<!--            </div>-->
+<!--            <button type="button" class="btn btn-primary">BUY</button>-->
+<!--        </div>-->
+        {Course}
     </div>
 
     <!-- Courses End -->
@@ -252,13 +203,13 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="/public/lib/easing/easing.min.js"></script>
-    <script src="/public/lib/waypoints/waypoints.min.js"></script>
-    <script src="/public/lib/counterup/counterup.min.js"></script>
-    <script src="/public/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="/lib/easing/easing.min.js"></script>
+    <script src="/lib/waypoints/waypoints.min.js"></script>
+    <script src="/lib/counterup/counterup.min.js"></script>
+    <script src="/lib/owlcarousel/owl.carousel.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="/public/js/main.js"></script>
+    <script src="/js/main.js"></script>
 </body>
 
 </html>
