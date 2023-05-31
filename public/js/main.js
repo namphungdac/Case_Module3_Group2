@@ -153,6 +153,6 @@ function img(){
     let arrImg = imgAdd.split('\\')
     urlImg += arrImg[2]
     console.log(urlImg)
-    document.getElementById("imgUpload").innerHTML = `<img src="${urlImg}" alt="anhr loi">`
+    document.getElementById("imgUpload").innerHTML = `<img src="${urlImg}" height="300px" width="300px" alt="anhr loi">`
 
 }
