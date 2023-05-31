@@ -35,7 +35,8 @@ class GeneralPageController {
                 let user = databaseUser.filter(user => user.userEmail === email && user.userPassword === password);
                 if (user.length > 0) {
                     if (user[0].role === 'customer') {
-                        await BaseFunctionController.writeFileData('./session/user', JSON.stringify(userLoginInfo));
+                        await BaseFunctionController.writeFileData('./session/user ' + Date.now() , JSON.stringify(userLoginInfo));
+
                         res.writeHead(301, {"location": "/customerHome"});
                         res.end();
                     } else {
@@ -69,7 +70,7 @@ class GeneralPageController {
                 let role = 'customer'
                 await UserModel.addUser(email, password, role);
                 await UserModel.addCustomer(name, address, +age);
-                await BaseFunctionController.writeFileData('./session/user', JSON.stringify(userLoginInfo));
+                await BaseFunctionController.writeFileData('./session/user' + Date.now(), JSON.stringify(userLoginInfo));
                 res.writeHead(301, {"location": "/customerHome"});
                 res.end();
             });
@@ -78,7 +79,7 @@ class GeneralPageController {
 
     static async getCustomerHomePage(req, res) {
         let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
-        let html = await BaseFunctionController.readFileHTML('./src/views/general/customerHome.html');
+        let html = await BaseFunctionController.readFileHTML('./src/views/customer/customerHome.html');
         html = html.replace('{customerName}', JSON.parse(userLoginInfo.toString()).email);
         res.writeHead(200, {'Context-type': 'text/html'});
         res.write(html);
@@ -86,7 +87,7 @@ class GeneralPageController {
     }
 
     static async getAdminHomePage(req, res) {
-        let html = await BaseFunctionController.readFileHTML('./src/views/general/adminHome.html');
+        let html = await BaseFunctionController.readFileHTML('./src/views/admin/adminHome.html');
         res.writeHead(200, {'Context-type': 'text/html'});
         res.write(html);
         res.end();
