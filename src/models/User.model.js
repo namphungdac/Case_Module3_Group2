@@ -12,7 +12,7 @@ class UserModel extends DatabaseModel {
     }
 
     static async addCustomer(customerName, customerAddress, customerAge) {
-        let sql = `insert into Customer (customerName, customerAddress, customerAge) values ('${customerName}', '${customerAddress}', ${customerAge});`
+        let sql = `insert into Customer (customerName, customerAddress, customerAge, userID) values ('${customerName}', '${customerAddress}', ${customerAge}, (select max(userID) from User));`
         await DatabaseModel.querySql(sql);
     }
 

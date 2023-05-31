@@ -4,14 +4,14 @@ const UserModel = require('../models/User.model');
 
 class GeneralPageController {
     static async getPage(req, res) {
-        let html = await BaseFunctionController.readFileHTML('./src/views/general/page.html');
+        let html = await BaseFunctionController.readFileHTML('./src/views/general/homePage.html');
         res.writeHead(200, {'Content-type': 'text/html'});
         res.write(html);
         res.end();
     }
 
     static async getNotFoundPage(req, res) {
-        let html = await BaseFunctionController.readFileHTML('./src/views/general/notfound.html');
+        let html = await BaseFunctionController.readFileHTML('./src/views/general/notFoundPage.html');
         res.writeHead(200, {'Context-type': 'text/html'});
         res.write(html);
         res.end();
@@ -19,7 +19,7 @@ class GeneralPageController {
 
     static async handleLoginPage(req, res) {
         if (req.method === 'GET') {
-            let html = await BaseFunctionController.readFileHTML('./src/views/general/login.html');
+            let html = await BaseFunctionController.readFileHTML('./src/views/general/loginPage.html');
             res.writeHead(200, {'Context-type': 'text/html'});
             res.write(html);
             res.end();
@@ -39,6 +39,7 @@ class GeneralPageController {
                         res.writeHead(301, {"location": "/customerHome"});
                         res.end();
                     } else {
+                        await BaseFunctionController.writeFileData('./session/user', JSON.stringify(userLoginInfo));
                         res.writeHead(301, {"location": "/adminHome"});
                         res.end();
                     }
@@ -52,7 +53,7 @@ class GeneralPageController {
 
     static async handleRegisterPage(req, res) {
         if (req.method === 'GET') {
-            let html = await BaseFunctionController.readFileHTML('./src/views/general/register.html');
+            let html = await BaseFunctionController.readFileHTML('./src/views/general/registerPage.html');
             res.writeHead(200, {'Context-type': 'text/html'});
             res.write(html);
             res.end();
@@ -74,22 +75,6 @@ class GeneralPageController {
                 res.end();
             });
         }
-    }
-
-    static async getCustomerHomePage(req, res) {
-        let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
-        let html = await BaseFunctionController.readFileHTML('./src/views/customer/customerHome.html');
-        html = html.replace('{customerName}', JSON.parse(userLoginInfo.toString()).email);
-        res.writeHead(200, {'Context-type': 'text/html'});
-        res.write(html);
-        res.end();
-    }
-
-    static async getAdminHomePage(req, res) {
-        let html = await BaseFunctionController.readFileHTML('./src/views/admin/adminHome.html');
-        res.writeHead(200, {'Context-type': 'text/html'});
-        res.write(html);
-        res.end();
     }
 
 }
