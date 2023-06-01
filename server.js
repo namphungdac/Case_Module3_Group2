@@ -44,6 +44,6 @@ let router = {
 
     '/adminHome': adminPageController.getAdminHomePage,
     '/adminCourse': adminPageController.getAdminCoursePage,
-    '/adminAddCourse': adminPageController.getAdminAddCoursePage,
+    '/adminAddCourse': adminPageController.handleAdminAddCoursePage,
 }
 

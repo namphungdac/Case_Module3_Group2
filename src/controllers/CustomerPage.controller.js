@@ -35,6 +35,8 @@ class CustomerPageController {
         res.write(htmlCustomerCoursePage);
         res.end();
     }
+
+
 }
 
 module.exports = CustomerPageController;
