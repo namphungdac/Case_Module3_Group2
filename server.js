@@ -43,7 +43,7 @@ let router = {
     '/customerCourse': customerPageController.getCustomerCoursePage,
 
     '/adminHome': adminPageController.getAdminHomePage,
-    // '/adminCourse': adminPageController.getAdminCoursePage,
-    // '/adminAddCourse': adminPageController.getAdminAddCoursePage,
+    '/adminCourse': adminPageController.getAdminCoursePage,
+    '/adminAddCourse': adminPageController.getAdminAddCoursePage,
 }
 
