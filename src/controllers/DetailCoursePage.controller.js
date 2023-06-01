@@ -3,17 +3,9 @@ const BaseFunctionController = require('./BaseFunction.controller');
 const CourseModel = require('../models/Course.model');
 const UserModel = require('../models/User.model');
 
-class CustomerPageController {
-    static async getCustomerHomePage(req, res) {
-        let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
-        let html = await BaseFunctionController.readFileHTML('./src/views/customer/customerHomePage.html');
-        html = html.replace('{customerName}', JSON.parse(userLoginInfo.toString()).email);
-        res.writeHead(200, {'Context-type': 'text/html'});
-        res.write(html);
-        res.end();
-    }
+class DetailCoursePage {
 
-    static async getCustomerCoursePage(req, res) {
+    static async getDetailCoursePage(req, res) {
         let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
         let courseInfoDatabase = await CourseModel.getAllCourse();
         let courseHtml = '';
