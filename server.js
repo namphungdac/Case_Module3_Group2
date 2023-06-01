@@ -1,7 +1,10 @@
 const http = require('http');
 const url = require('url');
-let generalPageController = require('./src/controllers/GeneralPage.controller');
 const fs = require("fs");
+let generalPageController = require('./src/controllers/GeneralPage.controller');
+let adminPageController = require('./src/controllers/AdminPage.controller');
+let customerPageController = require('./src/controllers/CustomerPage.controller');
+
 
 const Server = http.createServer((req, res) => {
     let mimeTypes={
@@ -36,7 +39,11 @@ let router = {
     '/': generalPageController.getPage,
     '/login': generalPageController.handleLoginPage,
     '/register': generalPageController.handleRegisterPage,
-    '/customerHome': generalPageController.getCustomerHomePage,
-    '/adminHome': generalPageController.getAdminHomePage,
+    '/customerHome': customerPageController.getCustomerHomePage,
+    '/customerCourse': customerPageController.getCustomerCoursePage,
+
+    '/adminHome': adminPageController.getAdminHomePage,
+    '/adminCourse': adminPageController.getAdminCoursePage,
+    '/adminAddCourse': adminPageController.getAdminAddCoursePage,
 }
 
