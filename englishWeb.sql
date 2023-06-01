@@ -54,7 +54,7 @@ insert into user (userEmail, userPassword) values
 
 insert into Course(priceCourse,imageCourseLink,titleCourse,contentCourse,describeCourse)
 values('3000000','/public/img/courses-1.jpg','Khóa học Tiếng Anh Trung học Cơ sở',
-'Khóa học Tiếng Anh Trung học Cơ sở: Dành cho các em học sinh lớp 6,7,8,9',
+'Dành cho các em học sinh lớp 6,7,8,9 để củng cố kiến thức ngữ pháp vững chắc để học tốt ở trường và thi vào các trường PTTH.',
 '
 Khóa học Tiếng Anh Trung học Cơ sở
 Khóa học Tiếng Anh Trung học Cơ sở: Dành cho các em học sinh lớp 6,7,8,9
@@ -102,7 +102,7 @@ LỚP NC2-23N : Khai giảng 11/6/2023, Lịch học : 18h ngày thứ năm và 
 
 LỚP NC2-23P : Khai giảng 22/6/2023, Lịch học : 18h ngày thứ hai và thứ năm.'),
 ('7500000','/public/img/courses-4.jpg','Khóa học Pre-IELTS',
-'Lớp học nhằm hoàn thiện dần 4 kỹ năng nghe - nói - đọc - viết. (PRE IELTS)',
+'Cung cấp kiến thức trong cả bốn kỹ năng nhằm giúp các em có nền tảng vững vàng để tiếp nhận kiến thức trong khóa học IETLS.',
 '
 Khóa học Pre-IELTS
 Khóa học Pre-IELTS gồm 62,5 giờ trong 25 buổi, mỗi tuần 2 buổi, mỗi buổi 2,5 tiếng thời gian học từ 18h đến 20h30
