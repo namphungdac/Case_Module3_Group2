@@ -36,6 +36,12 @@ class CustomerPageController {
         res.end();
     }
 
+    // static async getCustomerCoursePage(req, res) {
+    // let htmlCustomerCoursePage = await BaseFunctionController.readFileHTML('./src/views/customer/course.html');
+    // res.writeHead(200, {'Context-type': 'text/html'});
+    // res.write(htmlCustomerCoursePage);
+    // res.end();
+    // }
 
 }
 
