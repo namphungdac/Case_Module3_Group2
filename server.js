@@ -37,6 +37,8 @@ Server.listen(2000, 'localhost', () => {
 
 let router = {
     '/': generalPageController.getPage,
+    '/about': generalPageController.getAboutPage,
+    '/contact': generalPageController.getContactPage,
     '/login': generalPageController.handleLoginPage,
     '/register': generalPageController.handleRegisterPage,
     '/customerHome': customerPageController.getCustomerHomePage,
