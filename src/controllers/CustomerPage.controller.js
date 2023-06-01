@@ -17,18 +17,16 @@ class CustomerPageController {
         let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
         let courseInfoDatabase = await CourseModel.getAllCourse();
         let courseHtml = '';
-        let i = 0
         courseInfoDatabase.forEach(course => {
-
-            courseHtml += `<form method="post"> <div class="card text-center" >
+            courseHtml += `<div class="card text-center">
             <img class="card-img-top" src="${course.imageCourseLink}" height="300px" width="180px" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title"><a href="/Khoahoc1">${course.titleCourse}</a></h5>
                 <p class="card-text">${course.contentCourse}</p>
                 <p class="card-text"><h5>Giá khoá học: ${course.priceCourse.toLocaleString()} VND</h5></p>
             </div>
-            <button id=i type="submit" onclick="buy()" class="btn btn-primary">BUY</button>
-            </div></form>`;
+            <button type="button" class="btn btn-primary">BUY</button>
+            </div>`;
         });
         let htmlCustomerCoursePage = await BaseFunctionController.readFileHTML('./src/views/customer/customerCoursePage.html');
         htmlCustomerCoursePage = htmlCustomerCoursePage.replace('{Course}', courseHtml);
@@ -37,6 +35,7 @@ class CustomerPageController {
         res.write(htmlCustomerCoursePage);
         res.end();
     }
+
 
 }
 

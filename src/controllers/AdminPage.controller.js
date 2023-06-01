@@ -36,16 +36,35 @@ class AdminPageController {
         res.end();
     }
 
-    static async getAdminAddCoursePage(req, res) {
-        let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
-        let htmlAdminAddCoursePage = await BaseFunctionController.readFileHTML('./src/views/admin/adminAddCoursePage.html');
-        htmlAdminAddCoursePage = htmlAdminAddCoursePage.replace('{customerName}', JSON.parse(userLoginInfo.toString()).email);
-        res.writeHead(200, {'Context-type': 'text/html'});
-        res.write(htmlAdminAddCoursePage);
-        res.end();
+    static async handleAdminAddCoursePage(req, res) {
+        if (req.method === 'GET') {
+            let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
+            let htmlAdminAddCoursePage = await BaseFunctionController.readFileHTML('./src/views/admin/adminAddCoursePage.html');
+            htmlAdminAddCoursePage = htmlAdminAddCoursePage.replace('{customerName}', JSON.parse(userLoginInfo.toString()).email);
+            res.writeHead(200, {'Context-type': 'text/html'});
+            res.write(htmlAdminAddCoursePage);
+            res.end();
+        } else {
+            let data = '';
+            req.on('data', chunk => {
+                data += chunk;
+            });
+            req.on('end', async () => {
+              try{
+                  let courseInfoAdded = qs.parse(data);
+                  let {imageCourseLink, titleCourse, contentCourse, describeCourse, priceCourse} = courseInfoAdded;
+                  imageCourseLink = '/public/img/' + imageCourseLink;
+                  await CourseModel.addCourse(imageCourseLink, titleCourse, contentCourse, describeCourse, +priceCourse);
+                  res.writeHead(301,{Location :'/adminAddCourse'});
+                  res.end();
+              }
+              catch (err) {
+                  console.log(err.message)
+              }
+            });
+        }
+
     }
-
-
 
 }
 
