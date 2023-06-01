@@ -25,7 +25,7 @@ class CustomerPageController {
                 <p class="card-text">${course.contentCourse}</p>
                 <p class="card-text"><h5>Giá khoá học: ${course.priceCourse.toLocaleString()} VND</h5></p>
             </div>
-            <button type="button" class="btn btn-primary">BUY</button>
+            <button type="button"  class="btn btn-primary">BUY</button>
             </div>`;
         });
         let htmlCustomerCoursePage = await BaseFunctionController.readFileHTML('./src/views/customer/customerCoursePage.html');

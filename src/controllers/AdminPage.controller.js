@@ -18,15 +18,15 @@ class AdminPageController {
         let courseInfoDatabase = await CourseModel.getAllCourse();
         let courseHtml = '';
         courseInfoDatabase.forEach(course => {
-            courseHtml += `<div class="card text-center">
+            courseHtml += `<form method="post"> <div class="card text-center">
             <img class="card-img-top" src="${course.imageCourseLink}" height="284px" width="160px" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title"><a href="/KH1">${course.titleCourse}</a></h5>
                 <p class="card-text">${course.contentCourse}</p>
             </div>
-            <button type="button" class="btn btn-primary">Edit</button>
-            <button type="button" class="btn btn-danger">Delete</button>
-        </div>`;
+            <a href="/edit"><button type="button" class="btn btn-primary">Edit</button></a>
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </div></form>`;
         });
         let htmlAdminCoursePage = await BaseFunctionController.readFileHTML('./src/views/admin/adminCoursePage.html');
         htmlAdminCoursePage = htmlAdminCoursePage.replace('{Course}', courseHtml);
