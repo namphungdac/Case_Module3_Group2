@@ -19,11 +19,11 @@ class CustomerPageController {
         let courseHtml = '';
         courseInfoDatabase.forEach(course => {
             courseHtml += `<div class="card text-center">
-            <img class="card-img-top" src="${course.imageCourseLink}" height="284px" width="160px" alt="Card image cap">
+            <img class="card-img-top" src="${course.imageCourseLink}" height="300px" width="180px" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title"><a href="/Khoahoc1">${course.titleCourse}</a></h5>
                 <p class="card-text">${course.contentCourse}</p>
-                <p class="card-text">${course.priceCourse}</p>
+                <p class="card-text"><h5>Giá khoá học: ${course.priceCourse.toLocaleString()} VND</h5></p>
             </div>
             <button type="button" class="btn btn-primary">BUY</button>
             </div>`;
