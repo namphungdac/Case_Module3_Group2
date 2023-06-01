@@ -1,5 +1,3 @@
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'S300pmu1';
-flush privileges;
 
 drop database englishWeb;
 create database if not exists englishWeb;
@@ -21,15 +19,16 @@ create table Customer (
     foreign key (userID) references User(userID)
 );
 
+-- insert into Customer (customerName, customerAddress, customerAge, userID) value 
+-- ('aaa', 'bbb', 20, (select max(userID) from User));
+
 create table Course (
 	courseID int primary key auto_increment not null,
     imageCourseLink varchar(100) not null,
     titleCourse nvarchar(100) not null,
     contentCourse nvarchar (1000) not null,
     describeCourse nvarchar(10000),
-    priceCourse float check (priceCourse >0) not null,
-    customerID int,
-    foreign key (customerID) references Customer (customerID)
+    priceCourse float check (priceCourse >0) not null
 );
 
 create table Orders (
@@ -52,8 +51,9 @@ insert into user (userEmail, userPassword) values
 ('ducanh_admin@gmail.com','123'), 
 ('nam_admin@gmail.com','123');
 
+
 insert into Course(priceCourse,imageCourseLink,titleCourse,contentCourse,describeCourse)
-values('3000000','../../../public/img/courses-1.jpg','Khóa học Tiếng Anh Trung học Cơ sở',
+values('3000000','/public/img/courses-1.jpg','Khóa học Tiếng Anh Trung học Cơ sở',
 'Khóa học Tiếng Anh Trung học Cơ sở: Dành cho các em học sinh lớp 6,7,8,9',
 '
 Khóa học Tiếng Anh Trung học Cơ sở
@@ -71,7 +71,7 @@ Tham gia khóa học này, học sinh sẽ:
 Khi nào các em có thể tham gia khóa học này: 
 -Bất cứ thời gian nào trong năm.Phụ huynh hoặc học sinh có thể liên hệ với cô Vân Anh (điện thoại: 0917511052) để thảo luận thời gian đến làm bài thi đánh giá trình độ. Bài thi bao gồm phần bài ngữ pháp, nghe, đọc, viết, và/hoặc xem video. Kết quả bài thi sẽ có chậm nhất một tuần sau khi thi. Sau đó học sinh sẽ được xếp vào lớp phù hợp.
 '),
-('4500000','../../../public/img/courses-2.jpg','Khóa học Nâng cấp 1',
+('4500000','/public/img/courses-2.jpg','Khóa học Nâng cấp 1',
 'Khóa học Cơ Bản: Dành cho người mới học tiếng Anh hoặc sau một thời gian dài không sử dụng muốn bổ sung kiến thức từ đầu.',
 '
 Khóa học Nâng cấp 1
@@ -85,7 +85,7 @@ Tổng quan: Khóa học chú trọng xây dựng và phát triển vốn ngữ 
 Giáo trình: Chương trình học do cô Thanh Nhã và nhóm giáo viên của Đại học Ngoại ngữ, Đại học Quốc gia thiết kế, được tổng hợp và xây dựng hệ thống theo chủ đề từ nhiều sách về nghe, đọc, viết, từ vựng, ngữ pháp, phát âm của nhà xuất bản sách Cambridge, Macmillan, Pearson Longman.
 
 LỚP NC1-23B : Khai giảng 6/7/2023, Lịch học : 18h ngày thứ hai và thứ năm.'),
-('6000000','../../../public/img/courses-3.jpg','Khóa học Nâng Cấp 2',
+('6000000','/public/img/courses-3.jpg','Khóa học Nâng Cấp 2',
 'Lớp học nền tảng nhằm tăng cường 4 kỹ năng nghe nói đọc viết dành cho người có vốn từ vựng và ngữ pháp cơ bản',
 '
 Khóa học Nâng Cấp 2
@@ -101,7 +101,7 @@ Giáo trình: Chương trình học do cô Thanh Nhã, và nhóm giáo viên c�
 LỚP NC2-23N : Khai giảng 11/6/2023, Lịch học : 18h ngày thứ năm và 14h Chủ Nhật.
 
 LỚP NC2-23P : Khai giảng 22/6/2023, Lịch học : 18h ngày thứ hai và thứ năm.'),
-('7500000','../../../public/img/courses-4.jpg','Khóa học Pre-IELTS',
+('7500000','/public/img/courses-4.jpg','Khóa học Pre-IELTS',
 'Lớp học nhằm hoàn thiện dần 4 kỹ năng nghe - nói - đọc - viết. (PRE IELTS)',
 '
 Khóa học Pre-IELTS
@@ -119,7 +119,7 @@ Tổng quan: Là lớp học nhằm hoàn thiện dần 4 kỹ năng. PRE IELTS 
 - Giáo trình: Chương trình học do cô Thanh Nhã và nhóm giáo viên của Đại học Ngoại ngữ, Đại học Quốc gia thiết kế, được tổng hợp và xây dựng hệ thống theo chủ đề từ nhiều sách về nghe, đọc, viết, từ vựng, ngữ pháp, phát âm của nhà xuất bản sách Cambridge, Macmillan, Pearson Longman...
 
 LỚP PRE-IELTS 23P : Khai giảng 6/6/2023, Lịch học : 18h ngày thứ ba và thứ sáu.'),
-('9000000','../../../public/img/courses-5.jpg','Khóa học IELTS INTERMEDIATE',
+('9000000','/public/img/courses-5.jpg','Khóa học IELTS INTERMEDIATE',
 'Lớp học này giúp học sinh đạt mức điểm tối thiểu 6.0. Khoảng điểm phổ biến sau khóa học là 6.5-7. ',
 '-Mục tiêu: giúp học sinh đạt mức điểm tối thiểu 6.0. Khoảng điểm phổ biến của các em sau khóa học là 6.5-7. Và luôn có một nhóm sẽ đạt trên mức điểm này.
 
@@ -148,7 +148,7 @@ LỚP PRE-IELTS 23P : Khai giảng 6/6/2023, Lịch học : 18h ngày thứ ba v
 LƯU Ý: SAU KHOÁ IELTS INTERMEDIATE CÁC EM CÓ THỂ THI BÀI THI IELTS THỰC TẾ (TẠI BC HOĂC IDP) HOẶC CÓ THỂ LỰA CHỌN HỌC TIẾP LÊN MỘT TRONG HAI LỚP: IELTS ADVANCED HOẶC IELTS INTENSIVE TẠI TRUNG TÂM TIẾNG ANH NHÃ TRẦN
 
 LỚP IELTS INTERMEDIATE 23N : Khai giảng 18/6/2023, Lịch học : 18h ngày thứ tư và sáng chủ nhật'),
-('10500000','../../../public/img/courses-6.jpg','Khóa học IELTS ADVANCED',
+('10500000','/public/img/courses-6.jpg','Khóa học IELTS ADVANCED',
 'Lớp học này giúp học sinh đạt mức điểm tối thiểu 6.5. Khoảng điểm phổ biến sau khóa học là 7.5-8.0',
 '-Mục tiêu: giúp học sinh đạt mức điểm tối thiểu 6.5. Điểm phổ biến của các em sau khóa học là 7.5 - 8.0. Và luôn có một nhóm đạt trên 8.0.
 
