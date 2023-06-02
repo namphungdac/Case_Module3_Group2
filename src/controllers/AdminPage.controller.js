@@ -2,6 +2,8 @@ const qs = require('qs');
 const BaseFunctionController = require('./BaseFunction.controller');
 const CourseModel = require('../models/Course.model');
 const url = require("url");
+const formidable = require("formidable");
+const fs = require("fs");
 
 class AdminPageController {
     static async getAdminHomePage(req, res) {
@@ -57,19 +59,23 @@ class AdminPageController {
     static async handleAdminEditCoursePage(req, res) {
         let courseID = qs.parse(url.parse(req.url).query).id;
         if (req.method === 'GET') {
-            let courseInfoDatabase = await CourseModel.getCourseByCourseID(courseID);
-            let {imageCourseLink, titleCourse, contentCourse, priceCourse, describeCourse} = courseInfoDatabase[0];
-            let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
-            let htmlAdminEditCoursePage = await BaseFunctionController.readFileHTML('./src/views/admin/adminEditCoursePage.html');
-            htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{customerName}', JSON.parse(userLoginInfo.toString()).email);
-            htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{urlImg}', imageCourseLink);
-            htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{titleCourse}', titleCourse);
-            htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{contentCourse}', contentCourse);
-            htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{priceCourse}', priceCourse);
-            htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{describeCourse}', describeCourse);
-            res.writeHead(200, {'Context-type': 'text/html'});
-            res.write(htmlAdminEditCoursePage);
-            return res.end();
+            try {
+                let courseInfoDatabase = await CourseModel.getCourseByCourseID(courseID);
+                let {imageCourseLink, titleCourse, contentCourse, priceCourse, describeCourse} = courseInfoDatabase[0];
+                let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
+                let htmlAdminEditCoursePage = await BaseFunctionController.readFileHTML('./src/views/admin/adminEditCoursePage.html');
+                htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{customerName}', JSON.parse(userLoginInfo.toString()).email);
+                htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{urlImg}', imageCourseLink);
+                htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{titleCourse}', titleCourse);
+                htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{contentCourse}', contentCourse);
+                htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{priceCourse}', priceCourse);
+                htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{describeCourse}', describeCourse);
+                res.writeHead(200, {'Context-type': 'text/html'});
+                res.write(htmlAdminEditCoursePage);
+                res.end();
+            } catch (err) {
+                console.log(err.message)
+            }
         } else {
             let data = '';
             req.on('data', chunk => {
@@ -103,24 +109,25 @@ class AdminPageController {
             res.write(htmlAdminAddCoursePage);
             res.end();
         } else {
-            let data = '';
-            req.on('data', chunk => {
-                data += chunk;
-            });
-            req.on('end', async () => {
-                try {
-                    let courseInfoAdded = qs.parse(data);
-                    let {imageCourseLink, titleCourse, contentCourse, describeCourse, priceCourse} = courseInfoAdded;
-                    imageCourseLink = '/public/img/' + imageCourseLink;
+            const form = new formidable.IncomingForm();
+            form.parse(req, async (err, fields, files) => {
+                if (err) {
+                    res.writeHead(err.httpCode || 400, {'Content-Type': 'text/plain'});
+                    res.end(String(err));
+                    return;
+                }
+                const oldpath = files.filetoupload.filepath;
+                const newpath = './public/img/' + files.filetoupload.originalFilename;
+                fs.copyFile(oldpath, newpath, async function (err) {
+                    if (err) throw err;
+                    let {titleCourse, contentCourse, describeCourse, priceCourse} = fields;
+                    let imageCourseLink = '/public/img/' + files.filetoupload.originalFilename;
                     await CourseModel.addCourse(imageCourseLink, titleCourse, contentCourse, describeCourse, +priceCourse);
                     res.writeHead(301, {Location: '/adminAddCourse'});
-                    res.end();
-                } catch (err) {
-                    console.log(err.message)
-                }
+                    return res.end()
+                });
             });
         }
-
     }
 
 }
