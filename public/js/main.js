@@ -156,3 +156,6 @@ function img(){
     document.getElementById("imgUpload").innerHTML = `<img src="${urlImg}" height="300px" width="300px" alt="anhr loi">`
 
 }
+function buy(){
+    document.getElementById('i').innerHTML = "đã mua"
+}
