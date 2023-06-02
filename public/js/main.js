@@ -149,13 +149,11 @@ function ConfirmPass(){
 function img(){
     let urlImg = "/public/img/"
     let imgAdd = document.getElementById("validationTooltipUsername").value
-    // console.log(urlImg)
+
     let arrImg = imgAdd.split('\\')
+    console.log(arrImg)
     urlImg += arrImg[2]
     console.log(urlImg)
     document.getElementById("imgUpload").innerHTML = `<img src="${urlImg}" height="300px" width="300px" alt="anhr loi">`
 
-}
-function buy(){
-    document.getElementById('i').innerHTML = "đã mua"
 }

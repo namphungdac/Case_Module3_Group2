@@ -58,19 +58,23 @@ class AdminPageController {
     static async handleAdminEditCoursePage(req, res) {
         let courseID = qs.parse(url.parse(req.url).query).id;
         if (req.method === 'GET') {
-            let courseInfoDatabase = await CourseModel.getCourseByCourseID(courseID);
-            let {imageCourseLink, titleCourse, contentCourse, priceCourse, describeCourse} = courseInfoDatabase[0];
-            let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
-            let htmlAdminEditCoursePage = await BaseFunctionController.readFileHTML('./src/views/admin/adminEditCoursePage.html');
-            htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{customerName}', JSON.parse(userLoginInfo.toString()).email);
-            htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{urlImg}', imageCourseLink);
-            htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{titleCourse}', titleCourse);
-            htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{contentCourse}', contentCourse);
-            htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{priceCourse}', priceCourse);
-            htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{describeCourse}', describeCourse);
-            res.writeHead(200, {'Context-type': 'text/html'});
-            res.write(htmlAdminEditCoursePage);
-            res.end();
+            try{
+                let courseInfoDatabase = await CourseModel.getCourseByCourseID(courseID);
+                let {imageCourseLink, titleCourse, contentCourse, priceCourse, describeCourse} = courseInfoDatabase[0];
+                let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
+                let htmlAdminEditCoursePage = await BaseFunctionController.readFileHTML('./src/views/admin/adminEditCoursePage.html');
+                htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{customerName}', JSON.parse(userLoginInfo.toString()).email);
+                htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{urlImg}', imageCourseLink);
+                htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{titleCourse}', titleCourse);
+                htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{contentCourse}', contentCourse);
+                htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{priceCourse}', priceCourse);
+                htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{describeCourse}', describeCourse);
+                res.writeHead(200, {'Context-type': 'text/html'});
+                res.write(htmlAdminEditCoursePage);
+                res.end();
+            }catch (err){
+                console.log(err.message)
+            }
         } else {
             let data = '';
             req.on('data', chunk => {
