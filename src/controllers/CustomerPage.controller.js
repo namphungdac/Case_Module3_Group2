@@ -18,15 +18,15 @@ class CustomerPageController {
         let courseInfoDatabase = await CourseModel.getAllCourse();
         let courseHtml = '';
         courseInfoDatabase.forEach(course => {
-            courseHtml += `<div class="card text-center">
+            courseHtml += `<form method="post"> <div class="card text-center">
             <img class="card-img-top" src="${course.imageCourseLink}" height="300px" width="180px" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title"><a href="/Khoahoc1">${course.titleCourse}</a></h5>
                 <p class="card-text">${course.contentCourse}</p>
                 <p class="card-text"><h5>Giá khoá học: ${course.priceCourse.toLocaleString()} VND</h5></p>
             </div>
-            <button type="button"  class="btn btn-primary">BUY</button>
-            </div>`;
+            <button type="submit" name="" class="btn btn-primary">BUY</button>
+            </div> </form>`;
         });
         let htmlCustomerCoursePage = await BaseFunctionController.readFileHTML('./src/views/customer/customerCoursePage.html');
         htmlCustomerCoursePage = htmlCustomerCoursePage.replace('{Course}', courseHtml);

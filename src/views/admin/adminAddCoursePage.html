@@ -71,17 +71,10 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
                 <div class="navbar-nav mx-auto py-0">
-                    <a href="/home" class="nav-item nav-link">Home</a>
-                    <a href="/about" class="nav-item nav-link">About</a>
+                    <a href="/adminHome" class="nav-item nav-link">Home</a>
+                    <a href="/adminAbout" class="nav-item nav-link">About</a>
                     <a href="/adminCourse" class="nav-item nav-link">Courses</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Function</a>
-                        <div class="dropdown-menu m-0">
-                            <a href="/add" class="dropdown-item">Add</a>
-                            <a href="/edit" class="dropdown-item">edit</a>
-                            <a href="/delete" class="dropdown-item">delete</a>
-                        </div>
-                    </div>
+
                 </div>
                 <a href="" class="btn btn-primary py-2 px-4 d-none d-lg-block">{customerName}</a>
             </div>
@@ -105,42 +98,41 @@
                             <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">ADD PRODUCT</h6>
                             <h1 class="display-4">more videos for everyone to learn together</h1>
                         </div>
-                        <div class="needs-validation"  id="imgUpload">
-                            <table style="width: 300px; height: 300px; border: 3px solid black" >
-                                <tr>
-                                    <td style="width: 300px; height: 300px; font-size: 150px; " class="text-center">+</td>
-                                </tr>
-                            </table>
-                        </div>
+
                         <form class="needs-validation" method="post" novalidate>
                             <div class="form-row">
-                                <div class="col-md-4 mb-3">
+                                <div class="col-md-12 mb-3">
                                     <label for="validationTooltip01">Title</label>
                                     <input name="titleCourse" type="text" class="form-control" id="validationTooltip01"  required>
 
                                 </div>
-                                <div class="col-md-4 mb-3">
+                                <div class="col-md-12 mb-3">
                                     <label for="validationTooltip02">Content</label>
                                     <input name="contentCourse" type="text" class="form-control" id="validationTooltip02"  required>
 
                                 </div>
-                                <div class="col-md-4 mb-3">
+                                <div class="col-md-12 mb-3">
                                     <label for="validationTooltip02">Price</label>
                                     <input name="priceCourse" type="text" class="form-control" id="validationTooltip03"  required>
 
                                 </div>
                                 <div class="row-cols-md-4">
                                     <label>
-                                        Detailed description of the course
+                                         Description
                                         <textarea name="describeCourse"  cols="85" rows="10"></textarea>
                                     </label>
+                                </div>
+                                <div class="needs-validation"  id="imgUpload" hidden>
+                                    <table style="width: 300px; height: 300px; border: 3px solid black" >
+                                        <tr>
+                                            <td style="width: 300px; height: 300px; font-size: 150px; " class="text-center">+</td>
+                                        </tr>
+                                    </table>
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label for="validationTooltipUsername">url Img</label>
                                     <div class="input-group">
-
-                                        <input name="imageCourseLink" type="file" class="form-control" oninput="img()" id="validationTooltipUsername" aria-describedby="validationTooltipUsernamePrepend" required>
-                                        
+                                        <input name="imageCourseLink" type="file" class="form-control" oninput="choseImageCourse()" id="validationTooltipUsername" aria-describedby="validationTooltipUsernamePrepend" required>
                                     </div>
                                 </div>
                             </div>

@@ -146,7 +146,7 @@ function ConfirmPass(){
 
     }
 }
-function img(){
+function choseImageCourse(){
     let urlImg = "/public/img/"
     let imgAdd = document.getElementById("validationTooltipUsername").value
     // console.log(urlImg)

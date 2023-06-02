@@ -2,8 +2,9 @@ const http = require('http');
 const url = require('url');
 const fs = require("fs");
 let generalPageController = require('./src/controllers/GeneralPage.controller');
-let adminPageController = require('./src/controllers/AdminPage.controller');
-let customerPageController = require('./src/controllers/CustomerPage.controller');
+
+const router = require("./src/routers/web.router");
+const PORT = 2000;
 
 
 const Server = http.createServer((req, res) => {
@@ -31,20 +32,9 @@ const Server = http.createServer((req, res) => {
     }
 });
 
-Server.listen(2000, 'localhost', () => {
+Server.listen(PORT, 'localhost', () => {
     console.log('Server is running at http://localhost:2000');
 });
 
-let router = {
-    '/': generalPageController.getPage,
-    '/login': generalPageController.handleLoginPage,
-    '/register': generalPageController.handleRegisterPage,
-    '/customerHome': customerPageController.getCustomerHomePage,
-    '/customerCourse': customerPageController.getCustomerCoursePage,
 
-    '/adminHome': adminPageController.getAdminHomePage,
-    '/adminCourse': adminPageController.handleAdminCoursePage,
-    '/adminAddCourse': adminPageController.handleAdminAddCoursePage,
-    '/adminEditCourse': adminPageController.handleAdminEditCoursePage,
-}
 

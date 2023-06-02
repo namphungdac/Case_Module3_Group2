@@ -1,7 +1,6 @@
 const qs = require('qs');
 const BaseFunctionController = require('./BaseFunction.controller');
 const CourseModel = require('../models/Course.model');
-const UserModel = require('../models/User.model');
 const url = require("url");
 
 class AdminPageController {
@@ -70,7 +69,7 @@ class AdminPageController {
             htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{describeCourse}', describeCourse);
             res.writeHead(200, {'Context-type': 'text/html'});
             res.write(htmlAdminEditCoursePage);
-            res.end();
+            return res.end();
         } else {
             let data = '';
             req.on('data', chunk => {
@@ -80,7 +79,7 @@ class AdminPageController {
                 try {
                     let courseInfoAdded = qs.parse(data);
                     let {imageCourseLink, titleCourse, contentCourse, describeCourse, priceCourse} = courseInfoAdded;
-                    if (imageCourseLink === '') {
+                    if (!imageCourseLink) {
                         await CourseModel.getImageCourseLinkByCourseID(courseID).then(data => imageCourseLink = data[0].imageCourseLink);
                     } else {
                         imageCourseLink = '/public/img/' + imageCourseLink;
