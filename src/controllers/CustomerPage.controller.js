@@ -4,12 +4,29 @@ const CourseModel = require('../models/Course.model');
 class CustomerPageController {
     static async getCustomerHomePage(req, res) {
         let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
-        let html = await BaseFunctionController.readFileHTML('./src/views/customer/customerHomePage.html');
+        let html = await BaseFunctionController.readFileHTML('./src/views/customer/HomePage.html');
         html = html.replace('{customerName}', JSON.parse(userLoginInfo.toString()).email);
         res.writeHead(200, {'Context-type': 'text/html'});
         res.write(html);
         res.end();
     }
+    static async getAboutHomePage(req, res) {
+        let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
+        let html = await BaseFunctionController.readFileHTML('./src/views/customer/AboutPage.html');
+        html = html.replace('{customerName}', JSON.parse(userLoginInfo.toString()).email);
+        res.writeHead(200, {'Context-type': 'text/html'});
+        res.write(html);
+        res.end();
+    }
+    static async getContactHomePage(req, res) {
+        let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
+        let html = await BaseFunctionController.readFileHTML('./src/views/customer/ContactPage.html');
+        html = html.replace('{customerName}', JSON.parse(userLoginInfo.toString()).email);
+        res.writeHead(200, {'Context-type': 'text/html'});
+        res.write(html);
+        res.end();
+    }
+
 
     static async getCustomerCoursePage(req, res) {
         let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
@@ -26,7 +43,7 @@ class CustomerPageController {
             <button type="submit" name="" class="btn btn-primary">BUY</button>
             </div> </form>`;
         });
-        let htmlCustomerCoursePage = await BaseFunctionController.readFileHTML('./src/views/customer/customerCoursePage.html');
+        let htmlCustomerCoursePage = await BaseFunctionController.readFileHTML('./src/views/customer/CoursePage.html');
         htmlCustomerCoursePage = htmlCustomerCoursePage.replace('{Course}', courseHtml);
         htmlCustomerCoursePage = htmlCustomerCoursePage.replace('{customerName}', JSON.parse(userLoginInfo.toString()).email);
         res.writeHead(200, {'Context-type': 'text/html'});

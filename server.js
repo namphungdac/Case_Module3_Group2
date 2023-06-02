@@ -2,9 +2,8 @@ const http = require('http');
 const url = require('url');
 const fs = require("fs");
 let generalPageController = require('./src/controllers/GeneralPage.controller');
-
-const router = require("./src/routers/web.router");
-const PORT = 2000;
+const router = require("./src/routers/web.router")
+const PORT = 2000
 
 
 const Server = http.createServer((req, res) => {
@@ -35,6 +34,4 @@ const Server = http.createServer((req, res) => {
 Server.listen(PORT, 'localhost', () => {
     console.log('Server is running at http://localhost:2000');
 });
-
-
 

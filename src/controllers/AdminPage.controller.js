@@ -8,7 +8,7 @@ const fs = require("fs");
 class AdminPageController {
     static async getAdminHomePage(req, res) {
         let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
-        let html = await BaseFunctionController.readFileHTML('./src/views/admin/adminHomePage.html');
+        let html = await BaseFunctionController.readFileHTML('./src/views/admin/HomePage.html');
         html = html.replace('{customerName}', JSON.parse(userLoginInfo.toString()).email)
         res.writeHead(200, {'Context-type': 'text/html'});
         res.write(html);
@@ -27,11 +27,11 @@ class AdminPageController {
                 <h5 class="card-title"><a href="/KH1">${course.titleCourse}</a></h5>
                 <p class="card-text">${course.contentCourse}</p>
             </div>
-            <a href="/adminEditCourse?id=${course.courseID}"><button type="button" class="btn btn-primary">Edit</button></a>
+            <a href="/admin/Course/Edit?id=${course.courseID}"><button type="button" class="btn btn-primary">Edit</button></a>
             <button type="submit" name="courseID" value="${course.courseID}" class="btn btn-danger">Delete</button>
             </div></form>`;
             });
-            let htmlAdminCoursePage = await BaseFunctionController.readFileHTML('./src/views/admin/adminCoursePage.html');
+            let htmlAdminCoursePage = await BaseFunctionController.readFileHTML('./src/views/admin/CoursePage.html');
             htmlAdminCoursePage = htmlAdminCoursePage.replace('{Course}', courseHtml);
             htmlAdminCoursePage = htmlAdminCoursePage.replace('{customerName}', JSON.parse(userLoginInfo.toString()).email);
             res.writeHead(200, {'Context-type': 'text/html'});
@@ -63,7 +63,7 @@ class AdminPageController {
                 let courseInfoDatabase = await CourseModel.getCourseByCourseID(courseID);
                 let {imageCourseLink, titleCourse, contentCourse, priceCourse, describeCourse} = courseInfoDatabase[0];
                 let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
-                let htmlAdminEditCoursePage = await BaseFunctionController.readFileHTML('./src/views/admin/adminEditCoursePage.html');
+                let htmlAdminEditCoursePage = await BaseFunctionController.readFileHTML('./src/views/admin/EditCoursePage.html');
                 htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{customerName}', JSON.parse(userLoginInfo.toString()).email);
                 htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{urlImg}', imageCourseLink);
                 htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{titleCourse}', titleCourse);
@@ -103,7 +103,7 @@ class AdminPageController {
     static async handleAdminAddCoursePage(req, res) {
         if (req.method === 'GET') {
             let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
-            let htmlAdminAddCoursePage = await BaseFunctionController.readFileHTML('./src/views/admin/adminAddCoursePage.html');
+            let htmlAdminAddCoursePage = await BaseFunctionController.readFileHTML('./src/views/admin/AddCoursePage.html');
             htmlAdminAddCoursePage = htmlAdminAddCoursePage.replace('{customerName}', JSON.parse(userLoginInfo.toString()).email);
             res.writeHead(200, {'Context-type': 'text/html'});
             res.write(htmlAdminAddCoursePage);

@@ -7,14 +7,15 @@ let router = {
     '/contact': generalPageController.getContactPage,
     '/login': generalPageController.handleLoginPage,
     '/register': generalPageController.handleRegisterPage,
+    '/customer/Home': customerPageController.getCustomerHomePage,
+    '/customer/Course': customerPageController.getCustomerCoursePage,
+    '/customer/About': customerPageController.getAboutHomePage,
+    '/customer/Contact': customerPageController.getContactHomePage,
 
-    '/customerHome': customerPageController.getCustomerHomePage,
-    '/customerCourse': customerPageController.getCustomerCoursePage,
-
-    '/adminHome': adminPageController.getAdminHomePage,
-    '/adminCourse': adminPageController.handleAdminCoursePage,
-    '/adminAddCourse': adminPageController.handleAdminAddCoursePage,
-    '/adminEditCourse': adminPageController.handleAdminEditCoursePage,
+    '/admin/Home': adminPageController.getAdminHomePage,
+    '/admin/Course': adminPageController.handleAdminCoursePage,
+    '/admin/Course/Add': adminPageController.handleAdminAddCoursePage,
+    '/admin/Course/Edit': adminPageController.handleAdminEditCoursePage,
 }
 
 module.exports = router;
