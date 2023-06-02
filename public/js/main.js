@@ -132,6 +132,21 @@
             }
         }
     });
+
+
+    $("#image").change(function (evt) {
+        $('#blah').attr('hidden', false)
+        const file = this.files[0];
+        if (file){
+            let reader = new FileReader();
+            reader.onload = function(event){
+                console.log(event.target.result);
+                $('#blah').attr('src', event.target.result);
+            }
+            reader.readAsDataURL(file);
+        }
+    })
+
     
 })(jQuery);
 function ConfirmPass(){
@@ -145,15 +160,4 @@ function ConfirmPass(){
         document.getElementById('Confirm').innerHTML = ''
 
     }
-}
-function img(){
-    let urlImg = "/public/img/"
-    let imgAdd = document.getElementById("validationTooltipUsername").value
-
-    let arrImg = imgAdd.split('\\')
-    console.log(arrImg)
-    urlImg += arrImg[2]
-    console.log(urlImg)
-    document.getElementById("imgUpload").innerHTML = `<img src="${urlImg}" height="300px" width="300px" alt="anhr loi">`
-
 }

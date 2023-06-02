@@ -20,7 +20,7 @@ class DetailCoursePage {
             <button type="button" class="btn btn-primary">BUY</button>
             </div>`;
         });
-        let htmlCustomerCoursePage = await BaseFunctionController.readFileHTML('./src/views/customer/customerCoursePage.html');
+        let htmlCustomerCoursePage = await BaseFunctionController.readFileHTML('./src/views/customer/CoursePage.html');
         htmlCustomerCoursePage = htmlCustomerCoursePage.replace('{Course}', courseHtml);
         htmlCustomerCoursePage = htmlCustomerCoursePage.replace('{customerName}', JSON.parse(userLoginInfo.toString()).email);
         res.writeHead(200, {'Context-type': 'text/html'});
