@@ -78,7 +78,6 @@ class GeneralPageController {
     }
     static async getAboutPage(req, res) {
         let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
-        let html = await BaseFunctionController.readFileHTML('./src/views/general/aboutPage.html');
         let htmlCustomerCoursePage = await BaseFunctionController.readFileHTML('./src/views/general/aboutPage.html');
         htmlCustomerCoursePage = htmlCustomerCoursePage.replace('{customerName}', JSON.parse(userLoginInfo.toString()).email);
         res.writeHead(200, {'Context-type': 'text/html'});
@@ -87,7 +86,6 @@ class GeneralPageController {
     }
     static async getContactPage(req, res) {
         let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
-        let html = await BaseFunctionController.readFileHTML('./src/views/general/contactPage.html');
         let htmlCustomerCoursePage = await BaseFunctionController.readFileHTML('./src/views/general/contactPage.html');
         htmlCustomerCoursePage = htmlCustomerCoursePage.replace('{customerName}', JSON.parse(userLoginInfo.toString()).email);
 
