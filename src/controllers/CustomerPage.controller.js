@@ -12,6 +12,14 @@ class CustomerPageController {
         res.write(html);
         res.end();
     }
+    static async getAboutHomePage(req, res) {
+        let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
+        let html = await BaseFunctionController.readFileHTML('./src/views/customer/customerAboutPage.html');
+        html = html.replace('{customerName}', JSON.parse(userLoginInfo.toString()).email);
+        res.writeHead(200, {'Context-type': 'text/html'});
+        res.write(html);
+        res.end();
+    }
 
     static async getCustomerCoursePage(req, res) {
         let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');

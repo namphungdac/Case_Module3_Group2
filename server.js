@@ -43,6 +43,7 @@ let router = {
     '/register': generalPageController.handleRegisterPage,
     '/customerHome': customerPageController.getCustomerHomePage,
     '/customerCourse': customerPageController.getCustomerCoursePage,
+    '/customerAbout': customerPageController.getAboutHomePage,
 
     '/adminHome': adminPageController.getAdminHomePage,
     '/adminCourse': adminPageController.handleAdminCoursePage,
