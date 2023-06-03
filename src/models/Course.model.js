@@ -11,6 +11,11 @@ class CourseModel extends DatabaseModel {
         return await DatabaseModel.querySql(sql);
     }
 
+    static async getCourseIDByUserEmail(userEmail) {
+        let sql = `call get_courseID_by_userEmail('${userEmail}');`;
+        return await DatabaseModel.querySql(sql);
+    }
+
     static async addCourse(imageCourseLink, titleCourse, contentCourse, describeCourse, priceCourse) {
         let sql = `insert into Course (imageCourseLink, titleCourse, contentCourse, describeCourse, priceCourse) values ('${imageCourseLink}', '${titleCourse}', '${contentCourse}', '${describeCourse}', '${priceCourse}');`;
         await DatabaseModel.querySql(sql);
