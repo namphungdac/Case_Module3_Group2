@@ -7,15 +7,17 @@ let router = {
     '/contact': generalPageController.getContactPage,
     '/login': generalPageController.handleLoginPage,
     '/register': generalPageController.handleRegisterPage,
-    '/customer/Home': customerPageController.getCustomerHomePage,
-    '/customer/Course': customerPageController.getCustomerCoursePage,
-    '/customer/About': customerPageController.getAboutHomePage,
-    '/customer/Contact': customerPageController.getContactHomePage,
 
-    '/admin/Home': adminPageController.getAdminHomePage,
-    '/admin/Course': adminPageController.handleAdminCoursePage,
-    '/admin/Course/Add': adminPageController.handleAdminAddCoursePage,
-    '/admin/Course/Edit': adminPageController.handleAdminEditCoursePage,
+    '/customer/Home': customerPageController.getHomePage,
+    '/customer/Course': customerPageController.getCoursePage,
+    '/customer/About': customerPageController.getAboutPage,
+    '/customer/Contact': customerPageController.getContactPage,
+    '/customer/buy/course': customerPageController.handleCourseToBuyPage,
+
+    '/admin/Home': adminPageController.getHomePage,
+    '/admin/Course': adminPageController.handleCoursePage,
+    '/admin/Course/Add': adminPageController.handleAddCoursePage,
+    '/admin/Course/Edit': adminPageController.handleEditCoursePage,
 }
 
 module.exports = router;
