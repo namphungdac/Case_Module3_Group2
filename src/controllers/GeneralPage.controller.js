@@ -20,6 +20,7 @@ class GeneralPageController {
     static async handleLoginPage(req, res) {
         if (req.method === 'GET') {
             let html = await BaseFunctionController.readFileHTML('./src/views/general/loginPage.html');
+            await BaseFunctionController.writeFileData('./session/user', "");
             res.writeHead(200, {'Context-type': 'text/html'});
             res.write(html);
             res.end();
@@ -35,12 +36,13 @@ class GeneralPageController {
                 let user = databaseUser.filter(user => user.userEmail === email && user.userPassword === password);
                 if (user.length > 0) {
                     if (user[0].role === 'customer') {
+
                         await BaseFunctionController.writeFileData('./session/user', JSON.stringify(userLoginInfo));
-                        res.writeHead(301, {"location": "/customerHome"});
+                        res.writeHead(301, {"location": "/customer/Home"});
                         res.end();
                     } else {
                         await BaseFunctionController.writeFileData('./session/user', JSON.stringify(userLoginInfo));
-                        res.writeHead(301, {"location": "/adminHome"});
+                        res.writeHead(301, {"location": "/admin/Home"});
                         res.end();
                     }
                 } else {
@@ -71,23 +73,23 @@ class GeneralPageController {
                 await UserModel.addUser(email, password, role);
                 await UserModel.addCustomer(name, address, +age);
                 await BaseFunctionController.writeFileData('./session/user', JSON.stringify(userLoginInfo));
-                res.writeHead(301, {"location": "/customerHome"});
+                res.writeHead(301, {"location": "/customer/Home"});
                 res.end();
             });
         }
     }
+
     static async getAboutPage(req, res) {
         let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
-        let html = await BaseFunctionController.readFileHTML('./src/views/general/aboutPage.html');
         let htmlCustomerCoursePage = await BaseFunctionController.readFileHTML('./src/views/general/aboutPage.html');
         htmlCustomerCoursePage = htmlCustomerCoursePage.replace('{customerName}', JSON.parse(userLoginInfo.toString()).email);
         res.writeHead(200, {'Context-type': 'text/html'});
         res.write(htmlCustomerCoursePage);
         res.end();
     }
+
     static async getContactPage(req, res) {
         let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
-        let html = await BaseFunctionController.readFileHTML('./src/views/general/contactPage.html');
         let htmlCustomerCoursePage = await BaseFunctionController.readFileHTML('./src/views/general/contactPage.html');
         htmlCustomerCoursePage = htmlCustomerCoursePage.replace('{customerName}', JSON.parse(userLoginInfo.toString()).email);
 

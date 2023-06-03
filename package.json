@@ -2,6 +2,7 @@
   "name": "Case_Module3_Group2",
   "version": "1.0.0",
   "dependencies": {
+    "formidable": "^2.1.1",
     "fs": "^0.0.1-security",
     "http-server": "^14.1.1",
     "mysql": "^2.18.1",
