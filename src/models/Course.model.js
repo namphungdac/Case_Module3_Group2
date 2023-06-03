@@ -11,8 +11,8 @@ class CourseModel extends DatabaseModel {
         return await DatabaseModel.querySql(sql);
     }
 
-    static async getCourseByUserEmail(userEmail) {
-        let sql = `call get_course_by_customerName('${userEmail}');`;
+    static async getCourseIDByUserEmail(userEmail) {
+        let sql = `call get_courseID_by_userEmail('${userEmail}');`;
         return await DatabaseModel.querySql(sql);
     }
 

@@ -63,7 +63,7 @@
 <!-- Navbar Start -->
 <div class="container-fluid p-0">
     <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
-        <a href="/home" class="navbar-brand ml-lg-3">
+        <a href="/customer/Home" class="navbar-brand ml-lg-3">
             <h1 class="m-0 text-uppercase text-primary"><i class="fa fa-book-reader mr-3"></i>CGTX Center</h1>
         </a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -71,11 +71,11 @@
         </button>
         <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
             <div class="navbar-nav mx-auto py-0">
-                <a href="/home" class="nav-item nav-link">Home</a>
-                <a href="/about" class="nav-item nav-link">About</a>
-                <a href="/course" class="nav-item nav-link active">Courses</a>
+                <a href="/customer/Home" class="nav-item nav-link">Home</a>
+                <a href="/customer/About" class="nav-item nav-link">About</a>
+                <a href="/customer/Course" class="nav-item nav-link active">Courses</a>
 
-                <a href="/contact" class="nav-item nav-link">Contact</a>
+                <a href="/customer/Contact" class="nav-item nav-link">Contact</a>
             </div>
             <a href="" class="btn btn-primary py-2 px-4 d-none d-lg-block">{customerName}</a>
             <a href="/login" class="btn btn-primary py-2 px-4 d-none d-lg-block">log out</a>
@@ -87,17 +87,17 @@
 
 
 <!-- Header Start -->
-<div class="jumbotron jumbotron-fluid page-header position-relative overlay-bottom" style="margin-bottom: 90px;">
-    <div class="container text-center py-5">
-        <h1 class="text-white display-1">Course Detail</h1>
-        <div class="d-inline-flex text-white mb-5">
-            <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
-            <i class="fa fa-angle-double-right pt-1 px-3"></i>
-            <p class="m-0 text-uppercase">Course Detail</p>
-        </div>
+<!--<div class="jumbotron jumbotron-fluid page-header position-relative overlay-bottom" style="margin-bottom: 90px;">-->
+<!--    <div class="container text-center py-5">-->
+<!--        <h1 class="text-white display-1">Course Detail</h1>-->
+<!--        <div class="d-inline-flex text-white mb-5">-->
+<!--            <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>-->
+<!--            <i class="fa fa-angle-double-right pt-1 px-3"></i>-->
+<!--            <p class="m-0 text-uppercase">Course Detail</p>-->
+<!--        </div>-->
 
-    </div>
-</div>
+<!--    </div>-->
+<!--</div>-->
 <!-- Header End -->
 
 
@@ -107,55 +107,27 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="mb-5">
-                    <div class="section-title position-relative mb-5">
-                        <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Course
-                            Detail</h6>
-                        <h1 class="display-4">{tiêu đề khóa học} Web design & development courses for beginners</h1>
-                    </div>
-                    '
-                    <section class="container">
-                        <div class="row">
-                            <!-- main content -->
-                            <section class="col-sm-12 maincontent" style="width:100%;">
-g                                <p>
-                                    <img class="float-right ml-4" width="360" src="/public/img/courses-1.jpg" alt="KH1">
+                    {courseDetail}
 
-                                <div class="col-sm-12 text-justify">
-                                {nội dùng khóa học khi mua từ database}
-                                    <p><strong>Kh&oacute;a học Tiếng Anh Trung học Cơ sở</strong>: D&agrave;nh cho c&aacute;c em học sinh
-                                        lớp <strong>6,7,8,9</strong></p>
+<!--                    <div class="section-title position-relative mb-5">-->
+<!--&lt;!&ndash;                        <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Course&ndash;&gt;-->
+<!--&lt;!&ndash;                            Detail</h6>&ndash;&gt;-->
+<!--                        <h1 class="display-4">{titleCourse}</h1>-->
+<!--                    </div>-->
+<!--                    <section class="container">-->
+<!--                        <div class="row">-->
+<!--                            &lt;!&ndash; main content &ndash;&gt;-->
+<!--                            <section class="col-sm-12 maincontent" style="width:100%;">-->
+<!--                                <p>-->
+<!--                                    <img class="float-right ml-4" width="360" src="{imageCourseLink}" alt="KH1">-->
 
-                                    <p><strong>Gi&aacute;o Vi&ecirc;n</strong>:&nbsp;C&aacute;c thầy c&ocirc; l&agrave; thạc sĩ, tiến sĩ của
-                                        <strong>Đại học Ngoại Ngữ, ĐHQG H&agrave; Nội.</strong><br/>
-                                        <strong>Tổng quan</strong>:&nbsp;Chương tr&igrave;nh được thiết kế d&agrave;nh ri&ecirc;ng cho độ
-                                        tuổi của học sinh <strong>Trung học Cơ sở (lớp 6,7,8,9).</strong><br/>
-                                        Tham gia kh&oacute;a học n&agrave;y, học sinh sẽ:<br/>
-                                        &bull; C&oacute; được kiến thức ngữ ph&aacute;p vững chắc để học tốt ở trường v&agrave; thi v&agrave;o
-                                        c&aacute;c trường phổ th&ocirc;ng trung học, đặc biệt l&agrave; c&aacute;c trường chuy&ecirc;n.&nbsp;<br/>
-                                        &bull; Song song ph&aacute;t triển bốn kỹ năng nghe, n&oacute;i, đọc, viết để c&oacute; thể thực sự
-                                        sử dụng được ng&ocirc;n ngữ n&agrave;y trong giao tiếp.<br/>
-                                        &bull; C&oacute; cơ hội tiếp cận với hệ thống b&agrave;i tập, t&agrave;i liệu đa dạng (s&aacute;ch,
-                                        video, b&agrave;i h&aacute;t,tr&ograve; chơi, s&aacute;ch kỹ thuật số), cũng như c&aacute;c hoạt
-                                        động luyện tập ngữ ph&aacute;p v&agrave; giao tiếp đa dạng tr&ecirc;n lớp.&nbsp;<br/>
-                                        &bull; Ph&aacute;t triển t&igrave;nh y&ecirc;u ng&ocirc;n ngữ n&agrave;y trong một m&ocirc;i trường
-                                        học tập hiện đại, năng động, vui vẻ, v&agrave; mang t&iacute;nh th&uacute;c đẩy.&nbsp;<br/>
-                                        &bull; Ph&aacute;t triểnsự tự tin v&agrave; c&aacute;c kỹ năng mềm như l&agrave;m việc nh&oacute;m,
-                                        thương thuyết, th&ocirc;ng qua c&aacute;c việc tham gia c&aacute;c hoạt động theo cặp hoặc nh&oacute;m.&nbsp;<br/>
-                                        &bull; C&oacute; thể dễ d&agrave;ng chuyển sang học tốt c&aacute;c chương tr&igrave;nh thi quốc tế
-                                        như <strong>IELTS, TOEFL ibt</strong> sau khi ho&agrave;n th&agrave;nh kh&oacute;a học v&igrave; c&aacute;c
-                                        em đ&atilde; c&oacute; được nền tảng vững chắc về ngữ ph&aacute;p v&agrave; từ vựng cũng như bốn kỹ
-                                        năng.<br/>
-                                        Khi n&agrave;o c&aacute;c em c&oacute; thể tham gia kh&oacute;a học n&agrave;y:&nbsp;<br/>
-                                        -Bất cứ thời gian n&agrave;o trong năm.Phụ huynh hoặc học sinh c&oacute; thể li&ecirc;n hệ với c&ocirc;
-                                        <strong>V&acirc;n Anh</strong> (điện thoại: <strong>0917511052</strong>) để thảo luận thời gian đến
-                                        l&agrave;m b&agrave;i thi đ&aacute;nh gi&aacute; tr&igrave;nh độ. B&agrave;i thi bao gồm phần b&agrave;i
-                                        ngữ ph&aacute;p, nghe, đọc, viết, v&agrave;/hoặc xem video. Kết quả b&agrave;i thi sẽ c&oacute; chậm
-                                        nhất một tuần sau khi thi. Sau đ&oacute; học sinh sẽ được xếp v&agrave;o lớp ph&ugrave; hợp.</p>
-                                </div>
-                            </section>
-                        </div>
-                    </section>
-                    '                    <hr>
+<!--                                <div class="col-sm-12 text-justify">-->
+<!--                                {describeCourse}-->
+<!--                                </div>-->
+<!--                            </section>-->
+<!--                        </div>-->
+<!--                    </section>-->
+                    <hr>
                 </div>
 
                 <h2 class="mb-3">Related Courses</h2>

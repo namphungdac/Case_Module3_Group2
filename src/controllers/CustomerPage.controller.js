@@ -14,6 +14,7 @@ class CustomerPageController {
         res.write(html);
         res.end();
     }
+
     static async getAboutPage(req, res) {
         let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
         let html = await BaseFunctionController.readFileHTML('./src/views/customer/AboutPage.html');
@@ -22,6 +23,7 @@ class CustomerPageController {
         res.write(html);
         res.end();
     }
+
     static async getContactPage(req, res) {
         let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
         let html = await BaseFunctionController.readFileHTML('./src/views/customer/ContactPage.html');
@@ -33,10 +35,17 @@ class CustomerPageController {
 
     static async getCoursePage(req, res) {
         let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
+        let userEmail = JSON.parse(userLoginInfo.toString()).email;
         let courseInfoDatabase = await CourseModel.getAllCourse();
+        let resultGetCourseID = await CourseModel.getCourseIDByUserEmail(userEmail); // return Array[][]
+        let courseIDArray = [];
+        for (const {courseID} of resultGetCourseID[0]) {
+            courseIDArray.push(courseID);
+        }
         let courseHtml = '';
         courseInfoDatabase.forEach(course => {
-            courseHtml += `<form method="post"> <div class="card text-center">
+            if (!courseIDArray.length) {
+                courseHtml += `<form method="post"> <div class="card text-center">
             <a href="buy/course?id=${course.courseID}" ><img class="card-img-top" src="${course.imageCourseLink}" height="300px" width="180px" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title"><a href="buy/course?id=${course.courseID}">${course.titleCourse}</a></h5>
@@ -44,10 +53,31 @@ class CustomerPageController {
                 <p class="card-text"><h5>Giá khoá học: ${course.priceCourse.toLocaleString()} VND</h5></p>
             </div>
             </div> </form>`;
+            } else {
+                if (courseIDArray.indexOf(course.courseID) === -1) {
+                    courseHtml += `<form method="post"> <div class="card text-center">
+                                   <a href="buy/course?id=${course.courseID}" ><img class="card-img-top" src="${course.imageCourseLink}" height="300px" width="180px" alt="Card image cap">
+                                   <div class="card-body">
+                                        <h5 class="card-title"><a href="buy/course?id=${course.courseID}">${course.titleCourse}</a></h5>
+                                        <p class="card-text">${course.contentCourse}</p>
+                                   <p class="card-text"><h5>Giá khoá học: ${course.priceCourse.toLocaleString()} VND</h5></p>
+                                   </div>
+                                   </div> </form>`;
+                } else {
+                    courseHtml += `<form method="post"> <div class="card text-center">
+                                   <a href="courseDetail?id=${course.courseID}" ><img class="card-img-top" src="${course.imageCourseLink}" height="300px" width="180px" alt="Card image cap">
+                                   <div class="card-body">
+                                        <h5 class="card-title"><a href="courseDetail?id=${course.courseID}">${course.titleCourse}</a></h5>
+                                        <p class="card-text">${course.contentCourse}</p>
+                                   <p class="card-text"><a href="courseDetail?id=${course.courseID}"><h5>Click vào học đi ông cháu</h5></a></p>
+                                   </div>
+                                   </div> </form>`;
+                }
+            }
         });
         let htmlCoursePage = await BaseFunctionController.readFileHTML('./src/views/customer/CoursePage.html');
         htmlCoursePage = htmlCoursePage.replace('{Course}', courseHtml);
-        htmlCoursePage = htmlCoursePage.replace('{customerName}', JSON.parse(userLoginInfo.toString()).email);
+        htmlCoursePage = htmlCoursePage.replace('{customerName}', userEmail);
         res.writeHead(200, {'Context-type': 'text/html'});
         res.write(htmlCoursePage);
         res.end();
@@ -106,14 +136,16 @@ class CustomerPageController {
     static async buyCourse(req, res, courseID) {
         let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
         let userEmail = JSON.parse(userLoginInfo.toString()).email;
-        console.log(userEmail);
-        let orderID = await OrderModel.getOrderByUserEmail(userEmail);
-        console.log(orderID)
-        if (!orderID) {
-            let customerID = await CustomerModel.getCustomerIDByUserEmail(userEmail);
+        let resultGetOrderID = await OrderModel.getOrderIDByUserEmail(userEmail); // return Array[][]
+        if (!resultGetOrderID[0].length) {
+            let resultGetCustomerID = await CustomerModel.getCustomerIDByUserEmail(userEmail); // return Array[][]
+            let customerID = resultGetCustomerID[0][0].customerID;
             await OrderModel.addOrder(new Date().toLocaleDateString(), customerID);
+            let resultGetOrderIDAfter = await OrderModel.getOrderIDByUserEmail(userEmail);
+            let orderID = resultGetOrderIDAfter[0][0].orderID;
             await OrderModel.addOrderDetail(orderID, courseID);
         } else {
+            let orderID = resultGetOrderID[0][0].orderID;
             await OrderModel.addOrderDetail(orderID, courseID);
         }
         res.writeHead(301, {Location: '/customer/Course'});
@@ -129,6 +161,35 @@ class CustomerPageController {
         }
     }
 
+    static async getCourseToLearPage(req, res) {
+        let courseID = qs.parse(url.parse(req.url).query).id;
+        let courseInfoDatabase = await CourseModel.getCourseByCourseID(courseID);
+        let htmlCourse = '';
+        courseInfoDatabase.forEach(course => {
+            htmlCourse += `<div class="section-title position-relative mb-5">
+                        <h1 class="display-4">${course.titleCourse}</h1>
+                    </div>
+                    <section class="container">
+                        <div class="row">
+                            <!-- main content -->
+                            <section class="col-sm-12 maincontent" style="width:100%;">
+                                <p>
+                                    <img class="float-right ml-4" width="360" src="${course.imageCourseLink}" alt="KH1">
+                                <div class="col-sm-12 text-justify">
+                                ${course.describeCourse}
+                                </div>
+                            </section>
+                        </div>
+                    </section>`
+        });
+        let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
+        let htmlCourseToLearn = await BaseFunctionController.readFileHTML('./src/views/customer/CourseToLearn.html');
+        htmlCourseToLearn = htmlCourseToLearn.replace('{courseDetail}', htmlCourse);
+        htmlCourseToLearn = htmlCourseToLearn.replace('{customerName}', JSON.parse(userLoginInfo.toString()).email);
+        res.writeHead(200, {'Context-type': 'text/html'});
+        res.write(htmlCourseToLearn);
+        res.end();
+    }
 }
 
 module.exports = CustomerPageController;

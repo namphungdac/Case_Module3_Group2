@@ -13,6 +13,7 @@ let router = {
     '/customer/About': customerPageController.getAboutPage,
     '/customer/Contact': customerPageController.getContactPage,
     '/customer/buy/course': customerPageController.handleCourseToBuyPage,
+    '/customer/courseDetail': customerPageController.getCourseToLearPage,
 
     '/admin/Home': adminPageController.getHomePage,
     '/admin/Course': adminPageController.handleCoursePage,

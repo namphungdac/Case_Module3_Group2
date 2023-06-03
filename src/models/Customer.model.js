@@ -3,7 +3,7 @@ let DatabaseModel = require('./Database.model');
 class CustomerModel extends DatabaseModel {
     static async getCustomerIDByUserEmail(userEmail) {
         let sql = `call get_customerID_by_userEmail('${userEmail}');`;
-        await DatabaseModel.querySql(sql);
+        return await DatabaseModel.querySql(sql);
     }
 
 }

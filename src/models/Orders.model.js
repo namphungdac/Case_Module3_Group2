@@ -11,7 +11,7 @@ class OrdersModel extends DatabaseModel {
         await DatabaseModel.querySql(sql);
     }
 
-    static async getOrderByUserEmail(userEmail) {
+    static async getOrderIDByUserEmail(userEmail) {
         let sql = `call get_orderID_by_userEmail('${userEmail}');`
         return await DatabaseModel.querySql(sql);
     }
