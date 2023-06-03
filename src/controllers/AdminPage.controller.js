@@ -47,7 +47,7 @@ class AdminPageController {
                 try {
                     let courseID = qs.parse(data).courseID;
                     await CourseModel.deleteCourseByCourseID(+courseID);
-                    res.writeHead(301, {Location: '/adminCourse'});
+                    res.writeHead(301, {Location: '/admin/Course'});
                     res.end();
                 } catch (err) {
                     console.log(err.message);
@@ -91,7 +91,7 @@ class AdminPageController {
                         imageCourseLink = '/public/img/' + imageCourseLink;
                     }
                     await CourseModel.updateCourseByCourseID(imageCourseLink, titleCourse, contentCourse, describeCourse, +priceCourse, courseID);
-                    res.writeHead(301, {Location: '/adminCourse'});
+                    res.writeHead(301, {Location: '/admin/Course'});
                     res.end();
                 } catch (err) {
                     console.log(err.message);
@@ -123,7 +123,7 @@ class AdminPageController {
                     let {titleCourse, contentCourse, describeCourse, priceCourse} = fields;
                     let imageCourseLink = '/public/img/' + files.filetoupload.originalFilename;
                     await CourseModel.addCourse(imageCourseLink, titleCourse, contentCourse, describeCourse, +priceCourse);
-                    res.writeHead(301, {Location: '/adminAddCourse'});
+                    res.writeHead(301, {Location: '/admin/Course'});
                     return res.end()
                 });
             });

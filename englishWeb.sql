@@ -1,4 +1,3 @@
-
 drop database englishWeb;
 create database if not exists englishWeb;
 use englishWeb;
@@ -15,12 +14,9 @@ create table Customer (
     customerName varchar(50) not null,
     customerAddress varchar(50) not null,
     customerAge int,
-    userID int,
+    userID int unique,
     foreign key (userID) references User(userID)
 );
-
--- insert into Customer (customerName, customerAddress, customerAge, userID) value 
--- ('aaa', 'bbb', 20, (select max(userID) from User));
 
 create table Course (
 	courseID int primary key auto_increment not null,
@@ -28,16 +24,59 @@ create table Course (
     titleCourse nvarchar(100) not null,
     contentCourse nvarchar (1000) not null,
     describeCourse nvarchar(10000),
-    priceCourse float check (priceCourse >0) not null
+    priceCourse float check (priceCourse >0) not null,
+    teacher varchar(50),
+    times varchar(100)
 );
+
+Delimiter //
+Create Procedure get_courseID_by_userEmail(IN value varchar(50))
+    BEGIN
+    select Odd.courseID from User U
+    join Customer C on U.userID = C.userID
+	join Orders O on C.customerID = O.customerID
+	join OrderDetail Odd on	O.orderID = Odd.orderID
+	where U.userEmail = value;
+    END//
+DELIMITER ;
+drop procedure get_courseID_by_userEmail;
+-- call get_courseID_by_userEmail('tienmanh@gmail.com');
+
+
+Delimiter //
+Create Procedure get_orderID_by_userEmail(IN value varchar(50))
+    BEGIN
+	select O.orderID from User U 
+	join Customer C on U.userID = C.userID
+	join Orders O on C.customerID = O.customerID
+	where U.userEmail = value;
+    END//
+DELIMITER ;
+drop procedure get_orderID_by_userEmail;
+-- call get_orderID_by_userEmail('tienmanh@gmail.com');
+
+Delimiter //
+Create Procedure get_customerID_by_userEmail(IN value varchar(50))
+    BEGIN
+	select customerID from Customer C
+	join User U on	C.userID = U.userID
+	where U.userEmail = value;
+    END//
+DELIMITER ;
+drop procedure get_customerID_by_userEmail;
+-- call get_customerID_by_userEmail('tienmanh@gmail.com');
+
 
 create table Orders (
 	orderID int primary key auto_increment not null,
-    orderDate date,
+    orderDate varchar(50),
     customerID int not null,
     foreign key (customerID) references Customer(customerID)
 );
 
+-- insert into Orders (orderDate, customerID) value ('3/6/2023', 2);
+-- delete from Orders where orderID = 2;
+ 
 create table OrderDetail (
 	orderID int not null ,
     courseID int not null,
@@ -52,7 +91,7 @@ insert into user (userEmail, userPassword) values
 ('nam_admin@gmail.com','123');
 
 
-insert into Course(priceCourse,imageCourseLink,titleCourse,contentCourse,describeCourse)
+insert into Course (priceCourse,imageCourseLink,titleCourse,contentCourse,describeCourse, teacher, times)
 values('3000000','/public/img/courses-1.jpg','Khóa học Tiếng Anh Trung học Cơ sở',
 'Dành cho các em học sinh lớp 6,7,8,9 để củng cố kiến thức ngữ pháp vững chắc để học tốt ở trường và thi vào các trường PTTH.',
 '
@@ -60,10 +99,8 @@ values('3000000','/public/img/courses-1.jpg','Khóa học Tiếng Anh Trung họ
     <div class="row">
         <!-- main content -->
         <section class="col-sm-12 maincontent" style="width:100%;">
-            <h3 class="title-orangered">Kh&#243;a học Tiếng Anh Trung học Cơ sở</h3>
-            <p>
-                <img class="float-right ml-4" width="360" src="/public/img/courses-1.jpg" alt="KH1">
 
+            <p>
             <div class="col-sm-12 text-justify">
                 <p><strong>Kh&oacute;a học Tiếng Anh Trung học Cơ sở</strong>: D&agrave;nh cho c&aacute;c em học sinh
                     lớp <strong>6,7,8,9</strong></p>
@@ -99,7 +136,7 @@ values('3000000','/public/img/courses-1.jpg','Khóa học Tiếng Anh Trung họ
         </section>
     </div>
 </section>
-'),
+', 'Maria Ozawa', 'Từ 3/6 đến 5/7'),
 ('4500000','/public/img/courses-2.jpg','Khóa học Nâng cấp 1',
 'Khóa học Cơ Bản: Dành cho người mới học tiếng Anh hoặc sau một thời gian dài không sử dụng muốn bổ sung kiến thức từ đầu.',
 '
@@ -107,9 +144,8 @@ values('3000000','/public/img/courses-1.jpg','Khóa học Tiếng Anh Trung họ
     <div class="row">
         <!-- main content -->
         <section class="col-sm-12 maincontent" style="width:100%;">
-            <h3 class="title-orangered">Kh&#243;a học N&#226;ng cấp 1</h3>
+
             <p>
-                <img class="float-right ml-4" width="360" src="/public/img/courses-2.jpg" alt="KH2">
 
             <div class="col-sm-12 text-justify">
                 <blockquote>
@@ -133,7 +169,7 @@ Gi&aacute;o tr&igrave;nh:&nbsp;Chương tr&igrave;nh học do c&ocirc; <strong>T
         </section>
     </div>
 </section>
-'),
+', 'Minori Hatsune', 'Từ 4/6 đến 6/7'),
 ('6000000','/public/img/courses-3.jpg','Khóa học Nâng Cấp 2',
 'Lớp học nền tảng nhằm tăng cường 4 kỹ năng nghe nói đọc viết dành cho người có vốn từ vựng và ngữ pháp cơ bản',
 '
@@ -141,9 +177,9 @@ Gi&aacute;o tr&igrave;nh:&nbsp;Chương tr&igrave;nh học do c&ocirc; <strong>T
     <div class="row">
         <!-- main content -->
         <section class="col-sm-12 maincontent" style="width:100%;">
-            <h3 class="title-orangered">Kh&#243;a học N&#226;ng Cấp 2</h3>
+
             <p>
-                <img class="float-right ml-4" width="360" src="/public/img/courses-3.jpg" alt="KH3">
+
             <div class="col-sm-8 text-justify">
             <p><span style="font-size:16px"><span style="font-family:Times New Roman,Times,serif"><strong>Kh&oacute;a học N&acirc;ng Cấp 2:</strong>&nbsp;D&agrave;nh cho c&aacute;c em c&oacute; vốn từ vựng v&agrave; ngữ ph&aacute;p cơ bản, gồm 62,5 giờ trong 25&nbsp;buổi, mỗi tuần 2 buổi, mỗi buổi 2,5 tiếng thời gian học từ 18h đến 20h30.</span></span></p>
 
@@ -162,7 +198,7 @@ Gi&aacute;o tr&igrave;nh:&nbsp;Chương tr&igrave;nh học do c&ocirc; <strong>T
         </section>
     </div>
 </section>
-'),
+', 'Ria Sakurai', 'Từ 5/6 đến 7/7'),
 ('7500000','/public/img/courses-4.jpg','Khóa học Pre-IELTS',
 'Cung cấp kiến thức trong cả bốn kỹ năng nhằm giúp các em có nền tảng vững vàng để tiếp nhận kiến thức trong khóa học IETLS.',
 '
@@ -170,9 +206,9 @@ Gi&aacute;o tr&igrave;nh:&nbsp;Chương tr&igrave;nh học do c&ocirc; <strong>T
     <div class="row">
         <!-- main content -->
         <section class="col-sm-12 maincontent" style="width:100%;">
-            <h3 class="title-orangered">Kh&#243;a học Pre-IELTS</h3>
+
             <p>
-                <img class="float-right ml-4" width="360" src="/public/img/courses-4.jpg" alt="KH4">
+              
             <div class="col-sm-12 text-justify">
                 <p><span style="font-family:Times New Roman,Times,serif"><span style="font-size:16px"><strong>Kh&oacute;a học Pre-IELTS</strong> gồm 62,5 giờ trong 25&nbsp;buổi, mỗi tuần 2 buổi, mỗi buổi 2,5 tiếng thời gian học từ 18h đến 20h30</span></span>
                 </p>
@@ -200,13 +236,13 @@ Gi&aacute;o tr&igrave;nh:&nbsp;Chương tr&igrave;nh học do c&ocirc; <strong>T
         </section>
     </div>
 </section>
-'),
+', 'Yoshizawa Akiho', 'Từ 6/6 đến 8/7'),
 ('9000000','/public/img/courses-5.jpg','Khóa học IELTS INTERMEDIATE',
 'Lớp học này giúp học sinh đạt mức điểm tối thiểu 6.0. Khoảng điểm phổ biến sau khóa học là 6.5-7. ',
 '<section class="col-sm-12 maincontent" style="width:100%;">
-            <h3 class="title-orangered">Kh&#243;a học IELTS INTERMEDIATE</h3>
+
             <p>
-                <img class="float-right ml-4"  width="300" src="/public/img/courses-5.jpg" alt="KH5">
+              
             <div class="col-sm-12 text-justify">
                 <p><span style="background-color:white"><span
                         style="font-family:Times New Roman,serif"><strong><span style="background-color:white">- Mục ti&ecirc;u:</span></strong><span
@@ -274,16 +310,16 @@ Gi&aacute;o tr&igrave;nh:&nbsp;Chương tr&igrave;nh học do c&ocirc; <strong>T
         </section>
     </div>
 </section>
-'),
-('10500000','/public/img/courses-6.jpg','Khóa học IELTS ADVANCED',
+', 'Tsubasa Amami', 'Từ 7/6 đến 9/7'),
+('10500000','/public/img/tokuda.jpg','Khóa học IELTS ADVANCED',
 'Lớp học này giúp học sinh đạt mức điểm tối thiểu 6.5. Khoảng điểm phổ biến sau khóa học là 7.5-8.0',
 '<section class="container">
     <div class="row">
         <!-- main content -->
         <section class="col-sm-12 maincontent" style="width:100%;">
-            <h3 class="title-orangered">Kh&#243;a học IELTS ADVANCED</h3>
+   
             <p>
-                <img class="float-right ml-4" width="300" src="/public/img/courses-6.jpg" alt="KH6">
+      
             <div class="col-sm-12 text-justify">
                 <p style="margin-left:0; margin-right:0; text-align:left"><span style="font-size:16px"><span
                         style="font-family:Times New Roman,Times,serif"><span style="background-color:white"><strong>- Mục ti&ecirc;u:</strong>&nbsp;gi&uacute;p học sinh đạt mức điểm tối thiểu 6.5. Điểm phổ biến của c&aacute;c em sau kh&oacute;a học l&agrave; 7.5 - 8.0. V&agrave; lu&ocirc;n c&oacute; một nh&oacute;m đạt tr&ecirc;n&nbsp;8.0.</span></span></span>
@@ -341,7 +377,7 @@ Gi&aacute;o tr&igrave;nh:&nbsp;Chương tr&igrave;nh học do c&ocirc; <strong>T
         </section>
     </div>
 </section>
-');
+', 'Shigeo Tokuda', 'Từ 8/6 đến 10/7');
 
  
 
