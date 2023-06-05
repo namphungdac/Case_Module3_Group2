@@ -38,8 +38,8 @@ Create Procedure get_courseID_by_userEmail(IN value varchar(50))
 	join OrderDetail Odd on	O.orderID = Odd.orderID
 	where U.userEmail = value;
     END//
-DELIMITER ;-- 
--- drop procedure get_courseID_by_userEmail;
+DELIMITER ;
+drop procedure get_courseID_by_userEmail;
 -- call get_courseID_by_userEmail('tienmanh@gmail.com');
 
 
@@ -52,7 +52,7 @@ Create Procedure get_orderID_by_userEmail(IN value varchar(50))
 	where U.userEmail = value;
     END//
 DELIMITER ;
--- drop procedure get_orderID_by_userEmail;
+drop procedure get_orderID_by_userEmail;
 -- call get_orderID_by_userEmail('tienmanh@gmail.com');
 
 Delimiter //
@@ -63,7 +63,7 @@ Create Procedure get_customerID_by_userEmail(IN value varchar(50))
 	where U.userEmail = value;
     END//
 DELIMITER ;
--- drop procedure get_customerID_by_userEmail;
+drop procedure get_customerID_by_userEmail;
 -- call get_customerID_by_userEmail('tienmanh@gmail.com');
 
 
@@ -89,6 +89,8 @@ insert into user (userEmail, userPassword) values
 ('hieu_admin@gmail.com','123'),
 ('ducanh_admin@gmail.com','123'), 
 ('nam_admin@gmail.com','123');
+
+
 insert into Course (priceCourse,imageCourseLink,titleCourse,contentCourse,describeCourse, teacher, times)
 values('3000000','/public/img/courses-1.jpg','Khóa học Tiếng Anh Trung học Cơ sở',
 'Dành cho các em học sinh lớp 6,7,8,9 để củng cố kiến thức ngữ pháp vững chắc để học tốt ở trường và thi vào các trường PTTH.',
@@ -121,7 +123,7 @@ values('3000000','/public/img/courses-1.jpg','Khóa học Tiếng Anh Trung họ
                     thương thuyết, th&ocirc;ng qua c&aacute;c việc tham gia c&aacute;c hoạt động theo cặp hoặc nh&oacute;m.&nbsp;<br/>
                     &bull; C&oacute; thể dễ d&agrave;ng chuyển sang học tốt c&aacute;c chương tr&igrave;nh thi quốc tế
                     như <strong>IELTS, TOEFL ibt</strong> sau khi ho&agrave;n th&agrave;nh kh&oacute;a học v&igrave; c&aacute;c
-em đ&atilde; c&oacute; được nền tảng vững chắc về ngữ ph&aacute;p v&agrave; từ vựng cũng như bốn kỹ
+                    em đ&atilde; c&oacute; được nền tảng vững chắc về ngữ ph&aacute;p v&agrave; từ vựng cũng như bốn kỹ
                     năng.<br/>
                     Khi n&agrave;o c&aacute;c em c&oacute; thể tham gia kh&oacute;a học n&agrave;y:&nbsp;<br/>
                     -Bất cứ thời gian n&agrave;o trong năm.Phụ huynh hoặc học sinh c&oacute; thể li&ecirc;n hệ với c&ocirc;
@@ -157,7 +159,7 @@ Kh&oacute;a học gồm 62,5 giờ trong 25&nbsp;buổi, mỗi tuần 2 buổi, 
                 </p>
 
                 <p><span style="font-size:16px"><span
-style="font-family:Times New Roman,Times,serif"><strong>Tổng quan</strong>:&nbsp;Kh&oacute;a học ch&uacute; trọng x&acirc;y dựng v&agrave; ph&aacute;t triển vốn ngữ ph&aacute;p, từ vựng theo hướng giao tiếp để gi&uacute;p người học kh&ocirc;ng chỉ hiểu m&agrave; c&ograve;n sử dụng được những kiến thức n&agrave;y trong n&oacute;i v&agrave; viết. Đồng thời ph&aacute;t triển bốn kỹ năng <strong>Nghe-N&oacute;i-Đọc-Viết</strong> để c&aacute;c em c&oacute; nền tảng vững chắc trước khi học tiếp l&ecirc;n <strong>N&acirc;ng Cấp 2, PRE &ndash; IELTS</strong> v&agrave; sau đ&oacute; l&agrave; <strong>IELTS</strong>.&nbsp;<br/>
+                        style="font-family:Times New Roman,Times,serif"><strong>Tổng quan</strong>:&nbsp;Kh&oacute;a học ch&uacute; trọng x&acirc;y dựng v&agrave; ph&aacute;t triển vốn ngữ ph&aacute;p, từ vựng theo hướng giao tiếp để gi&uacute;p người học kh&ocirc;ng chỉ hiểu m&agrave; c&ograve;n sử dụng được những kiến thức n&agrave;y trong n&oacute;i v&agrave; viết. Đồng thời ph&aacute;t triển bốn kỹ năng <strong>Nghe-N&oacute;i-Đọc-Viết</strong> để c&aacute;c em c&oacute; nền tảng vững chắc trước khi học tiếp l&ecirc;n <strong>N&acirc;ng Cấp 2, PRE &ndash; IELTS</strong> v&agrave; sau đ&oacute; l&agrave; <strong>IELTS</strong>.&nbsp;<br/>
 Gi&aacute;o tr&igrave;nh:&nbsp;Chương tr&igrave;nh học do c&ocirc; <strong>Thanh Nh&atilde;</strong> v&agrave; nh&oacute;m gi&aacute;o vi&ecirc;n của <strong>Đại học Ngoại ngữ, Đại học Quốc gia</strong> thiết kế, được tổng hợp v&agrave; x&acirc;y dựng hệ thống theo chủ đề từ nhiều s&aacute;ch về nghe, đọc, viết, từ vựng, ngữ ph&aacute;p, ph&aacute;t &acirc;m của nh&agrave; xuất bản s&aacute;ch Cambridge, Macmillan, Pearson Longman.</span></span>
                 </p>
 
@@ -178,7 +180,7 @@ Gi&aacute;o tr&igrave;nh:&nbsp;Chương tr&igrave;nh học do c&ocirc; <strong>T
 
             <p>
 
-            <div class="col-sm-12 text-justify">
+            <div class="col-sm-8 text-justify">
             <p><span style="font-size:16px"><span style="font-family:Times New Roman,Times,serif"><strong>Kh&oacute;a học N&acirc;ng Cấp 2:</strong>&nbsp;D&agrave;nh cho c&aacute;c em c&oacute; vốn từ vựng v&agrave; ngữ ph&aacute;p cơ bản, gồm 62,5 giờ trong 25&nbsp;buổi, mỗi tuần 2 buổi, mỗi buổi 2,5 tiếng thời gian học từ 18h đến 20h30.</span></span></p>
 
             <p><span style="font-size:16px"><span style="font-family:Times New Roman,Times,serif">Điểm thi đầu v&agrave;o trung b&igrave;nh ba m&ocirc;n nghe, đọc, viết từ 3.5&nbsp;đến 4.9</span></span></p>
@@ -210,7 +212,8 @@ Gi&aacute;o tr&igrave;nh:&nbsp;Chương tr&igrave;nh học do c&ocirc; <strong>T
             <div class="col-sm-12 text-justify">
                 <p><span style="font-family:Times New Roman,Times,serif"><span style="font-size:16px"><strong>Kh&oacute;a học Pre-IELTS</strong> gồm 62,5 giờ trong 25&nbsp;buổi, mỗi tuần 2 buổi, mỗi buổi 2,5 tiếng thời gian học từ 18h đến 20h30</span></span>
                 </p>
-<p><span style="font-family:Times New Roman,Times,serif"><span style="font-size:16px">Điểm thi đầu v&agrave;o trung b&igrave;nh ba m&ocirc;n nghe, đọc, viết từ 5 đến 5.9</span></span>
+
+                <p><span style="font-family:Times New Roman,Times,serif"><span style="font-size:16px">Điểm thi đầu v&agrave;o trung b&igrave;nh ba m&ocirc;n nghe, đọc, viết từ 5 đến 5.9</span></span>
                 </p>
 
                 <p><span style="font-family:Times New Roman,Times,serif"><span
@@ -240,7 +243,7 @@ Gi&aacute;o tr&igrave;nh:&nbsp;Chương tr&igrave;nh học do c&ocirc; <strong>T
 
             <p>
               
-            <div class="col-sm-12text-justify">
+            <div class="col-sm-12 text-justify">
                 <p><span style="background-color:white"><span
                         style="font-family:Times New Roman,serif"><strong><span style="background-color:white">- Mục ti&ecirc;u:</span></strong><span
                         style="background-color:white">&nbsp;gi&uacute;p học sinh đạt mức điểm tối thiểu 6.0. Khoảng điểm phổ biến của c&aacute;c em sau kh&oacute;a học l&agrave; 6.5-7. V&agrave; lu&ocirc;n c&oacute; một nh&oacute;m sẽ đạt tr&ecirc;n mức điểm n&agrave;y.</span></span></span></span>
@@ -262,7 +265,7 @@ Gi&aacute;o tr&igrave;nh:&nbsp;Chương tr&igrave;nh học do c&ocirc; <strong>T
 
                 <p><span style="font-size:16px"><span
                         style="font-family:Times New Roman,Times,serif">-<strong>Điều kiện xếp lớp:</strong></span></span><span
-style="font-family:Times New Roman,serif; font-size:16px">&nbsp;điểm thi đầu v&agrave;o trung b&igrave;nh ba m&ocirc;n nghe, đọc, viết đạt 6.0-6.4 (theo thang điểm 10),&nbsp;v&agrave; điểm viết kh&ocirc;ng&nbsp;dưới 6.0.&nbsp;&nbsp;B&agrave;i thi xếp lớp sử dụng tiếng Anh&nbsp;tổng qu&aacute;t (general English), kh&ocirc;ng phải b&agrave;i thi IELTS.</span>
+                        style="font-family:Times New Roman,serif; font-size:16px">&nbsp;điểm thi đầu v&agrave;o trung b&igrave;nh ba m&ocirc;n nghe, đọc, viết đạt 6.0-6.4 (theo thang điểm 10),&nbsp;v&agrave; điểm viết kh&ocirc;ng&nbsp;dưới 6.0.&nbsp;&nbsp;B&agrave;i thi xếp lớp sử dụng tiếng Anh&nbsp;tổng qu&aacute;t (general English), kh&ocirc;ng phải b&agrave;i thi IELTS.</span>
                 </p>
 
                 <p>-&nbsp;<span style="font-size:12pt"><span
@@ -286,7 +289,7 @@ style="font-family:Times New Roman,serif; font-size:16px">&nbsp;điểm thi đ�
                 </p>
 
                 <p><span style="font-family:Times New Roman,Times,serif"><span
-style="font-size:16px"><span style="background-color:white">-&nbsp;</span>Tr&ecirc;n lớp gi&aacute;o vi&ecirc;n sẽ&nbsp;d&agrave;nh phần lớn thời gian cho n&oacute;i v&agrave; viết, hai kỹ năng đ&ograve;i hỏi rất nhiều nỗ lực v&agrave; một phương ph&aacute;p dạy hiệu quả để gi&uacute;p học sinh&nbsp;n&acirc;ng band điểm. Phần&nbsp;đọc v&agrave; nghe l&agrave; phần m&agrave; gi&aacute;o vi&ecirc;n&nbsp;sẽ hướng dẫn học sinh&nbsp;c&aacute;ch học v&agrave; giao b&agrave;i tập sau mỗi buổi học để em c&oacute; cơ hội luyện tập li&ecirc;n tục trong c&aacute;c&nbsp;buổi của kh&oacute;a học. </span></span>
+                        style="font-size:16px"><span style="background-color:white">-&nbsp;</span>Tr&ecirc;n lớp gi&aacute;o vi&ecirc;n sẽ&nbsp;d&agrave;nh phần lớn thời gian cho n&oacute;i v&agrave; viết, hai kỹ năng đ&ograve;i hỏi rất nhiều nỗ lực v&agrave; một phương ph&aacute;p dạy hiệu quả để gi&uacute;p học sinh&nbsp;n&acirc;ng band điểm. Phần&nbsp;đọc v&agrave; nghe l&agrave; phần m&agrave; gi&aacute;o vi&ecirc;n&nbsp;sẽ hướng dẫn học sinh&nbsp;c&aacute;ch học v&agrave; giao b&agrave;i tập sau mỗi buổi học để em c&oacute; cơ hội luyện tập li&ecirc;n tục trong c&aacute;c&nbsp;buổi của kh&oacute;a học. </span></span>
                 </p>
 
                 <p><span style="font-size:16px"><span
@@ -319,7 +322,7 @@ style="font-size:16px"><span style="background-color:white">-&nbsp;</span>Tr&eci
       
             <div class="col-sm-12 text-justify">
                 <p style="margin-left:0; margin-right:0; text-align:left"><span style="font-size:16px"><span
-style="font-family:Times New Roman,Times,serif"><span style="background-color:white"><strong>- Mục ti&ecirc;u:</strong>&nbsp;gi&uacute;p học sinh đạt mức điểm tối thiểu 6.5. Điểm phổ biến của c&aacute;c em sau kh&oacute;a học l&agrave; 7.5 - 8.0. V&agrave; lu&ocirc;n c&oacute; một nh&oacute;m đạt tr&ecirc;n&nbsp;8.0.</span></span></span>
+                        style="font-family:Times New Roman,Times,serif"><span style="background-color:white"><strong>- Mục ti&ecirc;u:</strong>&nbsp;gi&uacute;p học sinh đạt mức điểm tối thiểu 6.5. Điểm phổ biến của c&aacute;c em sau kh&oacute;a học l&agrave; 7.5 - 8.0. V&agrave; lu&ocirc;n c&oacute; một nh&oacute;m đạt tr&ecirc;n&nbsp;8.0.</span></span></span>
                 </p>
 
                 <p style="margin-left:0; margin-right:0; text-align:left"><span
@@ -341,7 +344,8 @@ style="font-family:Times New Roman,Times,serif"><span style="background-color:wh
 
                 <p><span style="font-size:16px"><span style="font-family:Times New Roman,Times,serif">- C&aacute;c chiến thuật l&agrave;m b&agrave;i thi ở cả bốn kỹ năng</span></span>
                 </p>
-<p><span style="font-size:16px"><span style="font-family:Times New Roman,Times,serif">- Từ vựng ở cấp độ cao cho phần&nbsp;<strong>Speaking&nbsp;</strong>(v&iacute; dụ idioms, phrasal verbs, collocations) cũng như c&aacute;ch thức trả lời c&aacute;c c&acirc;u hỏi để c&aacute;c em c&oacute; thể thể hiện tốt khả năng ng&ocirc;n ngữ của m&igrave;nh trong phần thi n&oacute;i cũng như cho mục đ&iacute;ch giao tiếp x&atilde; hội v&agrave; c&ocirc;ng việc sau n&agrave;y.</span></span>
+
+                <p><span style="font-size:16px"><span style="font-family:Times New Roman,Times,serif">- Từ vựng ở cấp độ cao cho phần&nbsp;<strong>Speaking&nbsp;</strong>(v&iacute; dụ idioms, phrasal verbs, collocations) cũng như c&aacute;ch thức trả lời c&aacute;c c&acirc;u hỏi để c&aacute;c em c&oacute; thể thể hiện tốt khả năng ng&ocirc;n ngữ của m&igrave;nh trong phần thi n&oacute;i cũng như cho mục đ&iacute;ch giao tiếp x&atilde; hội v&agrave; c&ocirc;ng việc sau n&agrave;y.</span></span>
                 </p>
 
                 <p><span style="font-size:16px"><span style="font-family:Times New Roman,Times,serif">- Từ vựng cho một loạt c&aacute;c chủ đề v&agrave; chiến thuật l&agrave;m b&agrave;i cũng như c&aacute;c template cho Writing Task 1 &amp; Task 2. C&aacute;c em cũng sẽ được tiếp cận c&aacute;c b&agrave;i văn mẫu hay cho c&aacute;c chủ đề đa dạng.</span></span>
@@ -361,7 +365,7 @@ style="font-family:Times New Roman,Times,serif"><span style="background-color:wh
                         style="font-family:Times New Roman,Times,serif; font-size:16px">LƯU &Yacute;: SAU KHO&Aacute; IELTS </span><span
                         style="font-family:Times New Roman,Times,serif"><span
                         style="font-size:16px"><strong>ADVANCED</strong></span></span><span
-style="font-family:Times New Roman,Times,serif; font-size:16px"> C&Aacute;C EM HO&Agrave;N TO&Agrave;N C&Oacute; THỂ TỰ TIN ĐẠT KẾT QUẢ TỐT TRONG B&Agrave;I THI IELTS THỰC TẾ (TẠI BC HOĂC IDP)&nbsp;&nbsp;</span>
+                        style="font-family:Times New Roman,Times,serif; font-size:16px"> C&Aacute;C EM HO&Agrave;N TO&Agrave;N C&Oacute; THỂ TỰ TIN ĐẠT KẾT QUẢ TỐT TRONG B&Agrave;I THI IELTS THỰC TẾ (TẠI BC HOĂC IDP)&nbsp;&nbsp;</span>
                 </p>
 
                 <p style="margin-left:0; margin-right:0; text-align:justify">&nbsp;</p>

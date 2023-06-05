@@ -79,12 +79,12 @@
                     <div class="dropdown-menu m-0">
                         <a href="/customer/Course" class="dropdown-item">Add</a>
                         <a href="/edit" class="dropdown-item">edit</a>
-                        <a href="/delete" class="dropdown-item">delete</a>
+                        <a href="/delete" class="dropdown-item" ">delete</a>
                     </div>
                 </div>
             </div>
             <a href="" class="btn btn-primary py-2 px-4 d-none d-lg-block">{customerName}</a>
-            <a href="/login" class="btn btn-primary py-2 px-4 d-none d-lg-block">log out</a>
+            <a href="/login" onclick="return confirm('bạn muốn đăng xuất không?')"  class="btn btn-primary py-2 px-4 d-none d-lg-block">log out</a>
 
         </div>
     </nav>
@@ -102,7 +102,7 @@
                     <div class="needs-validation"  id="imgUpload">
                         <table style="width: 300px; height: 300px; border: 3px solid black" >
                             <tr>
-                                <td style="width: 300px; height: 300px; font-size: 150px; " class="text-center"><img src="{urlImg}" alt=""></td>
+                                <td style="width: 300px; height: 300px; font-size: 150px; " class="text-center"> <img id="blah" src="{urlImg}" alt="your image" width="300" /></td>
                             </tr>
                         </table>
                     </div>
@@ -140,9 +140,9 @@
 
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label for="validationTooltipUsername"> Ảnh mô tả</label>
+                                <label for="inpImage"> Ảnh mô tả</label>
                                 <div class="input-group">
-                                    <input name="imageCourseLink" type="file" class="form-control" oninput="choseImageCourse()" id="validationTooltipUsername" aria-describedby="validationTooltipUsernamePrepend" required>
+                                    <input name="filetoupload" type="file" class="form-control" id="inpImage" aria-describedby="validationTooltipUsernamePrepend" required>
                                 </div>
                             </div>
                         </div>

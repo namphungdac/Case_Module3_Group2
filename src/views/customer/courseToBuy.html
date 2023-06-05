@@ -74,38 +74,14 @@
                 <a href="/customer/Home" class="nav-item nav-link">Home</a>
                 <a href="/customer/About" class="nav-item nav-link">About</a>
                 <a href="/customer/Course" class="nav-item nav-link active">Courses</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Function</a>
-                    <div class="dropdown-menu m-0">
-                        <a href="/customer/Course" class="dropdown-item">Add</a>
-                        <a href="/edit" class="dropdown-item">BUY</a>
-                        <a href="/delete" class="dropdown-item">delete</a>
-                    </div>
-                </div>
                 <a href="/customer/Contact" class="nav-item nav-link">Contact</a>
             </div>
             <a href="" class="btn btn-primary py-2 px-4 d-none d-lg-block">{customerName}</a>
-            <a href="/login" class="btn btn-primary py-2 px-4 d-none d-lg-block">log out</a>
+            <a href="/login" class="btn btn-primary py-2 px-4 d-none d-lg-block"  onclick="return confirm('bạn muốn đăng xuất không?')" >log out</a>
 
         </div>
     </nav>
 </div>
-<!-- Navbar End -->
-
-
-<!-- Header Start -->
-<!--<div class="jumbotron jumbotron-fluid page-header position-relative overlay-bottom" style="margin-bottom: 90px;">-->
-<!--    <div class="container text-center py-5">-->
-<!--        <h1 class="text-white display-1">Course Detail</h1>-->
-<!--        <div class="d-inline-flex text-white mb-5">-->
-<!--            <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>-->
-<!--            <i class="fa fa-angle-double-right pt-1 px-3"></i>-->
-<!--            <p class="m-0 text-uppercase">Course Detail</p>-->
-<!--        </div>-->
-
-<!--    </div>-->
-<!--</div>-->
-<!--&lt;!&ndash; Header End &ndash;&gt;-->
 
 
 <!-- Detail Start -->
@@ -114,20 +90,10 @@
         <div class="row">
             <div class="col-lg-8">
                 {Advertising}
-<!--                <div class="mb-5">-->
-<!--                    <div class="section-title position-relative mb-5">-->
-<!--                        <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Course-->
-<!--                            Detail</h6>-->
-<!--                        <h1 class="display-4">Web design & development courses for beginners</h1>-->
-<!--                    </div>-->
-<!--                    <img class="img-fluid rounded w-100 mb-4" src="/public/img/header.jpg" alt="Image">-->
-<!--                    <h4>Dành cho các em học sinh lớp 6,7,8,9 để củng cố kiến thức ngữ pháp vững chắc để học tốt ở trường và thi vào các trường PTTH.</h4>-->
-<!--                    <hr>-->
-<!--                </div>-->
 
                 <h2 class="mb-3">Related Courses</h2>
                 <div class="owl-carousel related-carousel position-relative" style="padding: 0 30px;">
-                    <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="detail.html">
+                    <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="/customer/Course">
                         <img class="img-fluid" src="/public/img/courses-1.jpg" alt="">
                         <div class="courses-text">
                             <h4 class="text-center text-white px-3">Khóa học IELTS INTERMEDIATE</h4>
@@ -139,7 +105,7 @@
                             </div>
                         </div>
                     </a>
-                    <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="detail.html">
+                    <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="/customer/Course">
                         <img class="img-fluid" src="/public/img/courses-2.jpg" alt="">
                         <div class="courses-text">
                             <h4 class="text-center text-white px-3">Khóa học IELTS ADVANCED</h4>
@@ -151,7 +117,7 @@
                             </div>
                         </div>
                     </a>
-                    <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="detail.html">
+                    <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="/customer/Course">
                         <img class="img-fluid" src="/public/img/courses-3.jpg" alt="">
                         <div class="courses-text">
                             <h4 class="text-center text-white px-3">Khóa học Pre-IELTS</h4>

@@ -78,7 +78,7 @@
                 <a href="/customer/Contact" class="nav-item nav-link">Contact</a>
             </div>
             <a href="" class="btn btn-primary py-2 px-4 d-none d-lg-block">{customerName}</a>
-            <a href="/login" class="btn btn-primary py-2 px-4 d-none d-lg-block">log out</a>
+            <a href="/login"  onclick="return confirm('bạn muốn đăng xuất không?')"  class="btn btn-primary py-2 px-4 d-none d-lg-block">log out</a>
 
         </div>
     </nav>
@@ -132,7 +132,7 @@
 
                 <h2 class="mb-3">Related Courses</h2>
                 <div class="owl-carousel related-carousel position-relative" style="padding: 0 30px;">
-                    <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="detail.html">
+                    <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="/customer/Course">
                         <img class="img-fluid" src="/public/img/courses-1.jpg" alt="">
                         <div class="courses-text">
                             <h4 class="text-center text-white px-3">Khóa học IELTS INTERMEDIATE</h4>
@@ -144,7 +144,7 @@
                             </div>
                         </div>
                     </a>
-                    <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="detail.html">
+                    <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="/customer/Course">
                         <img class="img-fluid" src="/public/img/courses-2.jpg" alt="">
                         <div class="courses-text">
                             <h4 class="text-center text-white px-3">Khóa học IELTS ADVANCED</h4>
@@ -156,7 +156,7 @@
                             </div>
                         </div>
                     </a>
-                    <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="detail.html">
+                    <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="/customer/Course">
                         <img class="img-fluid" src="/public/img/courses-3.jpg" alt="">
                         <div class="courses-text">
                             <h4 class="text-center text-white px-3">Khóa học Pre-IELTS</h4>

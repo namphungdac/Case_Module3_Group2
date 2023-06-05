@@ -146,6 +146,18 @@
             reader.readAsDataURL(file);
         }
     })
+    $("#inpImage").change(function (evt) {
+        $('#blah').attr('hidden', false)
+        const file = this.files[0];
+        if (file){
+            let reader = new FileReader();
+            reader.onload = function(event){
+                console.log(event.target.result);
+                $('#blah').attr('src', event.target.result);
+            }
+            reader.readAsDataURL(file);
+        }
+    })
 
     
 })(jQuery);
