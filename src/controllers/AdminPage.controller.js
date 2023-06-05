@@ -27,7 +27,7 @@ class AdminPageController {
                 <p class="card-text">${course.contentCourse}</p>
             </div>
             <a href="/admin/Course/Edit?id=${course.courseID}"><button type="button" class="btn btn-primary">Edit</button></a>
-            <button type="submit" name="courseID" value="${course.courseID}" onclick="return confirm('Bạn có cắc muốn Xóa không')" class="btn btn-danger">Delete</button>
+            <button type="submit" name="courseID" value="${course.courseID}" class="btn btn-danger" onclick="return confirm('Bạn chắc chắn muốn xoá khoá học này?')">Delete</button>
             </div></form>`;
         });
         let htmlAdminCoursePage = await BaseFunctionController.readFileHTML('./src/views/admin/CoursePage.html');
