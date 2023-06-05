@@ -27,7 +27,7 @@ class AdminPageController {
                 <p class="card-text">${course.contentCourse}</p>
             </div>
             <a href="/admin/Course/Edit?id=${course.courseID}"><button type="button" class="btn btn-primary">Edit</button></a>
-            <button type="submit" name="courseID" value="${course.courseID}" class="btn btn-danger">Delete</button>
+            <button type="submit" name="courseID" value="${course.courseID}" class="btn btn-danger" onclick="return confirm('Bạn chắc chắn muốn xoá khoá học này?')">Delete</button>
             </div></form>`;
         });
         let htmlAdminCoursePage = await BaseFunctionController.readFileHTML('./src/views/admin/CoursePage.html');
@@ -141,7 +141,7 @@ class AdminPageController {
 
     static async handleEditCoursePage(req, res) {
         let courseID = qs.parse(url.parse(req.url).query).id;
-        console.log(qs.parse(url.parse(req.url).query))
+        // console.log(qs.parse(url.parse(req.url).query))
         if (req.method === 'GET') {
             await AdminPageController.getEditCoursePage(req, res, courseID);
         } else {
