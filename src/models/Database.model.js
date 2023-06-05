@@ -19,7 +19,6 @@ class DatabaseModel {
             });
         });
     }
-
 }
 
 module.exports = DatabaseModel;
