@@ -33,7 +33,9 @@ class GeneralPageController {
                 let userLoginInfo = qs.parse(data);
                 let {email, password} = userLoginInfo;
                 let databaseUser = await UserModel.getAllUser();
+                // console.log(databaseUser)
                 let user = databaseUser.filter(user => user.userEmail === email && user.userPassword === password);
+
                 if (user.length > 0) {
                     if (user[0].role === 'customer') {
 
@@ -96,7 +98,6 @@ class GeneralPageController {
         res.write(htmlCustomerCoursePage);
         res.end();
     }
-
 }
 
 module.exports = GeneralPageController;

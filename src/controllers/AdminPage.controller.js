@@ -141,6 +141,7 @@ class AdminPageController {
 
     static async handleEditCoursePage(req, res) {
         let courseID = qs.parse(url.parse(req.url).query).id;
+        console.log(qs.parse(url.parse(req.url).query))
         if (req.method === 'GET') {
             await AdminPageController.getEditCoursePage(req, res, courseID);
         } else {
