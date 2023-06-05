@@ -16,8 +16,8 @@ class CourseModel extends DatabaseModel {
         return await DatabaseModel.querySql(sql);
     }
 
-    static async addCourse(imageCourseLink, titleCourse, contentCourse, describeCourse, priceCourse,teacher,times) {
-        let sql = `insert into Course (imageCourseLink, titleCourse, contentCourse, describeCourse, priceCourse,teacher,times) values ('${imageCourseLink}', '${titleCourse}', '${contentCourse}', '${describeCourse}', '${priceCourse}','${teacher}', '${times}');`;
+    static async addCourse(imageCourseLink, titleCourse, contentCourse, describeCourse, priceCourse, teacher, times) {
+        let sql = `insert into Course (imageCourseLink, titleCourse, contentCourse, describeCourse, priceCourse, teacher, times) values ('${imageCourseLink}', '${titleCourse}', '${contentCourse}', '${describeCourse}', '${priceCourse}', '${teacher}', '${times}');`;
         await DatabaseModel.querySql(sql);
     }
 
@@ -26,8 +26,8 @@ class CourseModel extends DatabaseModel {
         await DatabaseModel.querySql(sql);
     }
 
-    static async updateCourseByCourseID(imageCourseLink, titleCourse, contentCourse, describeCourse, priceCourse, courseID) {
-        let sql = `UPDATE Course SET imageCourseLink = '${imageCourseLink}', titleCourse = '${titleCourse}', contentCourse = '${contentCourse}', describeCourse = '${describeCourse}', priceCourse = '${priceCourse}' WHERE courseID = '${courseID}';`;
+    static async updateCourseByCourseID(imageCourseLink, titleCourse, contentCourse, describeCourse, priceCourse, teacher, times, courseID) {
+        let sql = `UPDATE Course SET imageCourseLink = '${imageCourseLink}', titleCourse = '${titleCourse}', contentCourse = '${contentCourse}', describeCourse = '${describeCourse}', priceCourse = '${priceCourse}', teacher = '${teacher}', times = '${times}' WHERE courseID = '${courseID}';`;
         await DatabaseModel.querySql(sql);
     }
 

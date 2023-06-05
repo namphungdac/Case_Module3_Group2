@@ -92,7 +92,6 @@ class GeneralPageController {
         let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
         let htmlCustomerCoursePage = await BaseFunctionController.readFileHTML('./src/views/general/contactPage.html');
         htmlCustomerCoursePage = htmlCustomerCoursePage.replace('{customerName}', JSON.parse(userLoginInfo.toString()).email);
-
         res.writeHead(200, {'Context-type': 'text/html'});
         res.write(htmlCustomerCoursePage);
         res.end();

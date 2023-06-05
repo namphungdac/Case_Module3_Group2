@@ -59,7 +59,7 @@ class AdminPageController {
     static async getEditCoursePage(req, res, courseID) {
         try {
             let courseInfoDatabase = await CourseModel.getCourseByCourseID(courseID);
-            let {imageCourseLink, titleCourse, contentCourse, priceCourse, describeCourse,teacher,times} = courseInfoDatabase[0];
+            let {imageCourseLink, titleCourse, contentCourse, priceCourse, describeCourse, teacher, times} = courseInfoDatabase[0];
             let userLoginInfo = await BaseFunctionController.readFileHTML('./session/user');
             let htmlAdminEditCoursePage = await BaseFunctionController.readFileHTML('./src/views/admin/EditCoursePage.html');
             htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{customerName}', JSON.parse(userLoginInfo.toString()).email);
@@ -79,24 +79,6 @@ class AdminPageController {
     }
 
     static async editCourse(req, res, courseID) {
-        const form = new formidable.IncomingForm();
-        form.parse(req, async (err, fields, files) => {
-            if (err) {
-                res.writeHead(err.httpCode || 400, {'Content-Type': 'text/plain'});
-                res.end(String(err));
-                return;
-            }
-            const oldpath = files.filetoupload.filepath;
-            const newpath = './public/img/' + files.filetoupload.originalFilename;
-            fs.copyFile(oldpath, newpath, async function (err) {
-                if (err) throw err;
-                let {titleCourse, contentCourse, describeCourse, priceCourse,teacher,times} = fields;
-                let imageCourseLink = '/public/img/' + files.filetoupload.originalFilename;
-                await CourseModel.addCourse(imageCourseLink, titleCourse, contentCourse, describeCourse, +priceCourse,teacher,times);
-                res.writeHead(301, {Location: '/admin/Course'});
-                return res.end()
-            });
-        });
         let data = '';
         req.on('data', chunk => {
             data += chunk;
@@ -104,13 +86,13 @@ class AdminPageController {
         req.on('end', async () => {
             try {
                 let courseInfoAdded = qs.parse(data);
-                let {imageCourseLink, titleCourse, contentCourse, describeCourse, priceCourse,teacher,times} = courseInfoAdded;
+                let {imageCourseLink, titleCourse, contentCourse, describeCourse, priceCourse, teacher, times} = courseInfoAdded;
                 if (!imageCourseLink) {
                     await CourseModel.getImageCourseLinkByCourseID(courseID).then(data => imageCourseLink = data[0].imageCourseLink);
                 } else {
                     imageCourseLink = '/public/img/' + imageCourseLink;
                 }
-                await CourseModel.updateCourseByCourseID(imageCourseLink, titleCourse, contentCourse, describeCourse, +priceCourse, courseID);
+                await CourseModel.updateCourseByCourseID(imageCourseLink, titleCourse, contentCourse, describeCourse, +priceCourse, teacher, times,courseID);
                 res.writeHead(301, {Location: '/admin/Course'});
                 res.end();
             } catch (err) {
@@ -140,9 +122,9 @@ class AdminPageController {
             const newpath = './public/img/' + files.filetoupload.originalFilename;
             fs.copyFile(oldpath, newpath, async function (err) {
                 if (err) throw err;
-                let {titleCourse, contentCourse, describeCourse, priceCourse,teacher,times} = fields;
+                let {titleCourse, contentCourse, describeCourse, priceCourse, teacher, times} = fields;
                 let imageCourseLink = '/public/img/' + files.filetoupload.originalFilename;
-                await CourseModel.addCourse(imageCourseLink, titleCourse, contentCourse, describeCourse, +priceCourse,teacher,times);
+                await CourseModel.addCourse(imageCourseLink, titleCourse, contentCourse, describeCourse, +priceCourse,teacher, times);
                 res.writeHead(301, {Location: '/admin/Course'});
                 return res.end()
             });
