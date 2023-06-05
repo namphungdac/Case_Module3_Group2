@@ -5,7 +5,6 @@ let generalPageController = require('./src/controllers/GeneralPage.controller');
 const router = require("./src/routers/web.router")
 const PORT = 2000
 
-
 const Server = http.createServer((req, res) => {
     let mimeTypes={
         'jpg' : 'images/jpg',
