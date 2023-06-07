@@ -64,7 +64,7 @@ class AdminPageController {
             let htmlAdminEditCoursePage = await BaseFunctionController.readFileHTML('./src/views/admin/EditCoursePage.html');
             htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{customerName}', JSON.parse(userLoginInfo.toString()).email);
             htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{urlImg}', imageCourseLink);
-            htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('c', titleCourse);
+            htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('titleCourse', titleCourse);
             htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{contentCourse}', contentCourse);
             htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{priceCourse}', priceCourse);
             htmlAdminEditCoursePage = htmlAdminEditCoursePage.replace('{describeCourse}', describeCourse);
